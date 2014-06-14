@@ -6,6 +6,7 @@ public class ThirdPersonController3 : MonoBehaviour
 	public Rigidbody target;
 		// The object we're steering
 
+
 	public float walkSpeed = 15.0f;
 	public float backWalkSpeed = 7.0f;
 	public float runSpeed = 30.0f;
@@ -41,6 +42,8 @@ public class ThirdPersonController3 : MonoBehaviour
 	private bool grounded;
 
 	private float distToGround;
+
+	GameController gameController;
 	
 	public bool Grounded
 	// Make our grounded status available for other components
@@ -74,15 +77,16 @@ public class ThirdPersonController3 : MonoBehaviour
 		//target.freezeRotation = true;
 			// We will be controlling the rotation of the target, so we tell the physics system to leave it be
 		status = 0;
-
-		GameObject.Find ("Game Controller").GetComponent<GameController>().UpdateWeightText(Mathf.Round(target.mass));
+	    
+		gameController =	GameObject.Find ("Game Controller").GetComponent<GameController> ();
+		gameController.UpdateWeightText(Mathf.Round(target.mass));
 	}
 	
 	
 	void Update ()
 	// Handle rotation here to ensure smooth application.
 	{
-
+		//gameController.PlayAudioRollingConcrete (target.mass, target.velocity.magnitude);
 	}
 	
 
@@ -154,11 +158,65 @@ public class ThirdPersonController3 : MonoBehaviour
 			Destroy(collision.gameObject);
 			target.mass += 1.0f;
 
-			GameObject.Find ("Game Controller").GetComponent<GameController>().UpdateWeightText(Mathf.Round(target.mass));
+			gameController.UpdateWeightText(Mathf.Round(target.mass));
 
+		}
+
+
+		if (collision.gameObject.name == "Workbench")
+		{
+			gameController.PlayAudioHitMetal(target.mass, target.velocity.magnitude);
+		}
+
+		if (collision.gameObject.tag == "Trap" || collision.gameObject.tag == "Trap 2")
+		{
+			Debug.Log(collision.gameObject.tag);
+			if (collision.gameObject.tag == "Trap")
+			{
+				target.AddForce(Vector3.up * 30, ForceMode.Impulse);
+			}
+			else
+				target.AddForce(- collision.relativeVelocity * 100, ForceMode.Impulse);
+			gameController.SetDeath();
+			Invoke("DestroyPlayer", 1);
+		}
+
+	}
+
+	void DestroyPlayer()
+	{
+		gameObject.SetActive (false);
+		//Destroy (gameObject);
+	}
+
+	void OnCollisionStay(Collision collision) {
+		
+		if (collision.gameObject.name == "Room Floor")
+		{
+			gameController.PlayAudioRollingConcrete(target.mass, target.velocity.magnitude);
+		}
+		
+		if (collision.gameObject.name == "Terrain Grass")
+		{
+			gameController.PlayAudioRollingGrass(target.mass, target.velocity.magnitude);
 		}
 		
 	}
+
+	void OnCollisionExit(Collision collision) {
+		
+		if (collision.gameObject.name == "Room Floor")
+		{
+			gameController.StopPlayingAudioRolling();
+		}
+		
+		if (collision.gameObject.name == "Terrain Grass")
+		{
+			gameController.StopPlayingAudioRolling();
+		}
+		
+	}
+
 
 
     void ApplyJumping()
@@ -182,6 +240,7 @@ public class ThirdPersonController3 : MonoBehaviour
                         target.velocity.normalized * directionalJumpFactor,
                     ForceMode.Impulse
                 );
+				gameController.PlayAudioJumping();
                 lastJumpTime = Time.time;
                 lastJumpButtonTime = -10.0f;
             }

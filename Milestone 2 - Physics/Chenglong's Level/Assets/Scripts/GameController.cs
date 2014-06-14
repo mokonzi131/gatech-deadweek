@@ -16,18 +16,27 @@ public class GameController : MonoBehaviour {
 	public Texture StaminaBubbleTexture;
 	public Texture StaminaTexture;
 	public float StaminaBubbleTextureRotation;
-
 	public float StaminaConsumption = 3.0f;
 	public float StaminaRecovery = 1.0f;
+	public int StaminaMaxValue = 100;
 
-	public int maxValue;
+	//Audio Clips
+	public AudioClip AudioRollingGrass;
+	public AudioClip AudioRollingConcrete;
+	public AudioClip AudioHitting;
+	public AudioClip AudioHittingMetal;
+	public AudioClip AudioJumping; 
+
+	private bool death;
 
 	// Use this for initialization
 	void Start () {
-		
+
+		death = false;
+
 		Stamina_bar = new HealthSystem(StaminaBarDimens, VerticleStaminaBar, StaminaBubbleTexture, StaminaTexture, StaminaBubbleTextureRotation);
 		
-		Stamina_bar.Initialize(maxValue);
+		Stamina_bar.Initialize(StaminaMaxValue);
 	
 	}
 	
@@ -60,15 +69,16 @@ public class GameController : MonoBehaviour {
 	{
 		Stamina_bar.DrawBar ();
 
-//		// These are the example Incriment and Deincriment buttons, mainly for demonstration purposes only
-//		if (GUI.Button(new Rect(health_bar.getScrollBarRect().x + (health_bar.getScrollBarRect().width / 2) - (128/2), health_bar.getScrollBarRect().y + (health_bar.getScrollBarRect().height / 2) - 30, 128, 20), "Increase Health"))
-//		{
-//			health_bar.IncrimentBar(Random.Range(1, 6));
-//		}
-//		else if (GUI.Button(new Rect(health_bar.getScrollBarRect().x + (health_bar.getScrollBarRect().width / 2) - (128 / 2), health_bar.getScrollBarRect().y + (health_bar.getScrollBarRect().height / 2) + (20/2), 128, 20), "Decrease Health"))
-//		{
-//			health_bar.IncrimentBar(Random.Range(-6, -1));
-//		}
+
+		if (death)
+		{
+			GUI.Label(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 150, 200, 40), "You're Dead!");
+			if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 130, 200, 40), "Try Again"))
+			{            
+				Application.LoadLevel(Application.loadedLevelName);
+			}
+		}
+
 	}
 
 	
@@ -82,5 +92,101 @@ public class GameController : MonoBehaviour {
 		weightText.text = "Weight: " + mass.ToString ();
 		lastWeightTextStartTime = Time.time;
 	}
+
+	public void StopPlayingAudioRolling()
+	{
+		if (audio.clip == AudioRollingGrass || audio.clip == AudioRollingConcrete)
+		{
+			audio.Stop();
+			audio.clip = null;
+		}
+	}
+
+	public void PlayAudioRollingGrass(float mass, float speed)
+	{
+		//Debug.Log ("Playing Grass!");
+		if (audio.clip != AudioRollingGrass)
+		{
+			if (audio.isPlaying)
+				return;
+
+			audio.clip = AudioRollingGrass;
+			audio.loop = true;
+			audio.Play();
+		}
+		audio.volume = mass / 100;
+
+		//High pitch audioclip, hard to manipulate the pitch only for good effects
+		audio.volume *= speed/10;
+
+		audio.pitch = Mathf.InverseLerp(0, 10, speed) * 0.15f + 0.85f;
+
+	}
+
+	public void PlayAudioRollingConcrete(float mass, float speed)
+	{
+		//Debug.Log ("Playing Concrete!");
+
+		if (audio.clip != AudioRollingConcrete)
+		{
+			if (audio.isPlaying)
+				return;
+
+			audio.clip = AudioRollingConcrete;
+			audio.loop = true;
+			audio.Play();
+		}
+		audio.volume = mass / 200;
+		audio.pitch = speed / 5;
+
+	}
+
+	public void PlayAudioDeath()
+	{
+		audio.clip = AudioHitting;
+		audio.loop = false;
+		
+		audio.volume = 1;
+
+		audio.pitch = 0.1f;
+		
+		audio.Play ();
+		
+	}
+
+	public void PlayAudioHitMetal(float mass, float speed)
+	{
+		audio.clip = AudioHittingMetal;
+		audio.loop = false;
+
+		audio.volume = mass / 40;
+		
+		//High pitch audioclip, hard to manipulate the pitch only for good effects
+		audio.volume *= (speed/10 + 0.1f);
+		audio.pitch = 0.8f;
+		
+		audio.Play ();
+
+	}
+
+	public void SetDeath()
+	{
+		death = true;
+		PlayAudioDeath ();
+
+	}
+
+	public void PlayAudioJumping()
+	{
+		
+		audio.clip = AudioJumping;
+		audio.loop = false;
+		
+		audio.volume = 0.05f;
+		audio.pitch = 1;
+
+		audio.Play ();
+	}
+
 
 }
