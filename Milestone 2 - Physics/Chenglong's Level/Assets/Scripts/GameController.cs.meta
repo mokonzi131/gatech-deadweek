@@ -2,7 +2,19 @@ fileFormatVersion: 2
 guid: 6c26790ad1a03664bab894b28f4dee22
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerController: {instanceID: 0}
+  - weightText: {instanceID: 0}
+  - StaminaBubbleTexture: {fileID: 2800000, guid: cf3ee2a174de85f4da6d499c5dd11009,
+      type: 3}
+  - StaminaTexture: {fileID: 2800000, guid: 23859ce1ac1078b4ca863fa57930665e, type: 3}
+  - AudioBounce: {fileID: 8300000, guid: 96fa4df3bab58ba45aa60693c42df240, type: 3}
+  - AudioRollingGrass: {fileID: 8300000, guid: 19429ab720a5fce4db81630bbb361b1d, type: 3}
+  - AudioRollingConcrete: {fileID: 8300000, guid: ff3cf4054e4b9bf4e926d3bdca23b35a,
+      type: 3}
+  - AudioHitting: {fileID: 8300000, guid: 7a355f808db11524a921ba39ba8968a5, type: 3}
+  - AudioHittingMetal: {fileID: 8300000, guid: 8a44b3138eb0083489376edf31042daf, type: 3}
+  - AudioJumping: {fileID: 8300000, guid: 41cfc93a921ae41419d8a08d6c046025, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

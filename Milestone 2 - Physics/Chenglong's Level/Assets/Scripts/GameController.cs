@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour {
 	public int StaminaMaxValue = 100;
 
 	//Audio Clips
+	public AudioClip AudioBounce;
 	public AudioClip AudioRollingGrass;
 	public AudioClip AudioRollingConcrete;
 	public AudioClip AudioHitting;
@@ -100,6 +101,22 @@ public class GameController : MonoBehaviour {
 			audio.Stop();
 			audio.clip = null;
 		}
+	}
+
+	public void PlayAudioBounce(float mass, float speed)
+	{
+		Debug.Log("hit trampoline");
+		if(audio.clip != AudioBounce)
+		{
+			if(audio.isPlaying)
+				return;
+
+			audio.clip = AudioBounce;
+			audio.loop = false;
+			audio.Play();
+		}
+		audio.volume = mass / 2;
+
 	}
 
 	public void PlayAudioRollingGrass(float mass, float speed)

@@ -162,6 +162,11 @@ public class ThirdPersonController3 : MonoBehaviour
 
 		}
 
+		if(collision.gameObject.name == "Trampoline")
+		{
+			gameController.PlayAudioBounce(target.mass, target.velocity.magnitude);
+		}
+
 
 		if (collision.gameObject.name == "Workbench")
 		{
@@ -190,7 +195,7 @@ public class ThirdPersonController3 : MonoBehaviour
 	}
 
 	void OnCollisionStay(Collision collision) {
-		
+
 		if (collision.gameObject.name == "Room Floor")
 		{
 			gameController.PlayAudioRollingConcrete(target.mass, target.velocity.magnitude);
@@ -204,7 +209,12 @@ public class ThirdPersonController3 : MonoBehaviour
 	}
 
 	void OnCollisionExit(Collision collision) {
-		
+
+		if(collision.gameObject.name == "Trampoline")
+		{
+			gameController.PlayAudioBounce(target.mass, target.velocity.magnitude);
+		}
+
 		if (collision.gameObject.name == "Room Floor")
 		{
 			gameController.StopPlayingAudioRolling();
