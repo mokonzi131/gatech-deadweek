@@ -64,6 +64,29 @@ public class GameController : MonoBehaviour {
 
 		//weightText.transform.position = playerController.target.transform.position;
 
+
+		if (Input.GetKeyDown(KeyCode.Alpha1))
+		{
+			Application.LoadLevel("Treasure Hunting");
+
+		}
+		else if (Input.GetKeyDown(KeyCode.Alpha2))
+		{
+			Application.LoadLevel("Bounce");
+		}
+		else if (Input.GetKeyDown(KeyCode.Alpha2))
+		{
+
+		}
+		else if (Input.GetKeyDown(KeyCode.Alpha2))
+		{
+
+		}
+		else if (Input.GetKeyDown(KeyCode.Alpha2))
+		{
+
+		}
+
 	}
 
 	public void OnGUI() 
