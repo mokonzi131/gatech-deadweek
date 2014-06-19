@@ -1,4 +1,14 @@
-﻿using UnityEngine;
+/*
+Created by Team "GT Dead Week"
+	Arnaud Golinvaux	
+	Chenglong Jiang
+	Michael Landes
+	Josephine Simon
+	Chuan Yao
+*/
+
+
+using UnityEngine;
 using System.Collections;
 
 public class GameControllerIce : MonoBehaviour {
@@ -71,7 +81,7 @@ public class GameControllerIce : MonoBehaviour {
 		//weightText.transform.position = playerController.target.transform.position;
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
-			Application.LoadLevel("Treasure Hunting");
+			Application.LoadLevel("Hidden Valley");
 			
 		}
 		else if (Input.GetKeyDown(KeyCode.Alpha2))

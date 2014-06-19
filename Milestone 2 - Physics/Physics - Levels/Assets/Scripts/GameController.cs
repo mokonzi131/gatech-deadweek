@@ -78,7 +78,7 @@ public class GameController : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
-			Application.LoadLevel("Treasure Hunting");
+			Application.LoadLevel("Hidden Valley");
 
 		}
 		else if (Input.GetKeyDown(KeyCode.Alpha2))
