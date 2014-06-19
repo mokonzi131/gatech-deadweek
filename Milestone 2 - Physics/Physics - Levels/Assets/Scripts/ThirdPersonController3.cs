@@ -1,3 +1,13 @@
+
+/*
+Created by Team "GT Dead Week"
+	Arnaud Golinvaux	
+	Chenglong Jiang
+	Michael Landes
+	Josephine Simon
+	Chuan Yao
+*/
+
 using UnityEngine;
 using System.Collections;
 
@@ -178,12 +188,12 @@ public class ThirdPersonController3 : MonoBehaviour
 			Debug.Log(collision.gameObject.tag);
 			if (collision.gameObject.tag == "Trap")
 			{
-				target.AddForce(Vector3.up * 30, ForceMode.Impulse);
+				target.AddForce(Vector3.up * 10 * target.mass, ForceMode.Impulse);
 			}
 			else
-				target.AddForce(- collision.relativeVelocity * 100, ForceMode.Impulse);
-			gameController.SetDeath();
-			Invoke("DestroyPlayer", 1);
+				target.AddForce(- collision.relativeVelocity * 3 * target.mass, ForceMode.Impulse);
+//			gameController.SetDeath();
+//			Invoke("DestroyPlayer", 1);
 		}
 
 	}
