@@ -1,4 +1,11 @@
-﻿using UnityEngine;
+﻿/*
+ * From Unity Asset Store
+ * https://www.assetstore.unity3d.com/en/#!/content/2806
+*/
+
+
+
+using UnityEngine;
 
 class HealthSystem : ScrollBarEssentials
 {

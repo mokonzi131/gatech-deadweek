@@ -1,3 +1,8 @@
+/*
+ * From Unity Asset Store
+ * https://www.assetstore.unity3d.com/en/#!/content/917
+*/
+
 using UnityEngine;
 using System.Collections;
 

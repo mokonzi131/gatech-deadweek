@@ -1,9 +1,28 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TriggerTrap2.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameController.cs" Line="87" Column="44" />
-      <File FileName="Assets/Scripts/GameControllerIce.cs" Line="90" Column="44" />
+      <File FileName="Assets\Scripts\GameController.cs" Line="245" Column="1" />
+      <File FileName="Assets\Scripts\GameControllerIce.cs" Line="8" Column="3" />
+      <File FileName="Assets\Scripts\BoundingWalls.cs" Line="8" Column="3" />
+      <File FileName="Assets\Scripts\CollisionIceBall.cs" Line="8" Column="3" />
+      <File FileName="Assets\Scripts\CollisionSnowBall.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CylinderController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\hitSound.cs" Line="8" Column="3" />
+      <File FileName="Assets\Scripts\IngotBreath.cs" Line="8" Column="3" />
+      <File FileName="Assets\Scripts\OrbitingCamera.cs" Line="5" Column="1" />
+      <File FileName="Assets\Scripts\ScrollBarEssentials.cs" Line="4" Column="3" />
+      <File FileName="Assets\Scripts\HealthSystem.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PhysicalWindZone.cs" Line="8" Column="3" />
+      <File FileName="Assets\Scripts\PinchoMove.cs" Line="8" Column="3" />
+      <File FileName="Assets\Scripts\PlayerControllerIce.cs" Line="8" Column="3" />
+      <File FileName="Assets\Scripts\rotationSound.cs" Line="8" Column="3" />
+      <File FileName="Assets\Scripts\RotationWall.cs" Line="8" Column="3" />
+      <File FileName="Assets\Scripts\SnowController.cs" Line="8" Column="3" />
+      <File FileName="Assets\Scripts\ThirdPersonController3.cs" Line="9" Column="3" />
+      <File FileName="Assets\Scripts\ThirdPersonControllerIce.cs" Line="8" Column="3" />
+      <File FileName="Assets\Scripts\TriggerTrap1.cs" Line="8" Column="3" />
+      <File FileName="Assets\Scripts\TriggerTrap2.cs" Line="8" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
