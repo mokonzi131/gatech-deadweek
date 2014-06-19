@@ -82,7 +82,7 @@ public class GameController : MonoBehaviour {
 		}
 		else if (Input.GetKeyDown(KeyCode.Alpha2))
 		{
-
+			Application.LoadLevel("WindyScene");
 		}
 		else if (Input.GetKeyDown(KeyCode.Alpha2))
 		{
