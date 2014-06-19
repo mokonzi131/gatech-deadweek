@@ -80,11 +80,11 @@ public class GameController : MonoBehaviour {
 			Application.LoadLevel("Bounce");
 
 		}
-		else if (Input.GetKeyDown(KeyCode.Alpha2))
+		else if (Input.GetKeyDown(KeyCode.Alpha4))
 		{
 			Application.LoadLevel("WindyScene");
 		}
-		else if (Input.GetKeyDown(KeyCode.Alpha2))
+		else if (Input.GetKeyDown(KeyCode.Alpha5))
 		{
 
 		}
