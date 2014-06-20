@@ -37,6 +37,7 @@ public class GameController : MonoBehaviour {
 	public AudioClip AudioHitting;
 	public AudioClip AudioHittingMetal;
 	public AudioClip AudioJumping; 
+	public AudioClip AudioGrav;
 
 	private bool death;
 
@@ -96,7 +97,7 @@ public class GameController : MonoBehaviour {
 		}
 		else if (Input.GetKeyDown(KeyCode.Alpha5))
 		{
-
+			Application.LoadLevel ("Gravity");
 		}
 
 	}
@@ -152,6 +153,20 @@ public class GameController : MonoBehaviour {
 		}
 		audio.volume = mass / 2;
 
+	}
+
+	public void PlayAudioGrav()
+	{
+		//if (audio.clip != AudioGrav)
+		//{
+			if (audio.isPlaying)
+				return;
+
+			audio.clip = AudioGrav;
+			audio.loop = false;
+		audio.volume *= 2;
+			audio.Play ();
+		//}
 	}
 
 	public void PlayAudioRollingGrass(float mass, float speed)

@@ -154,6 +154,7 @@ public class ThirdPersonController3 : MonoBehaviour
 			
 		}
 
+		CheckGravity ();
 	}
 
 	bool isGrounded () 
@@ -195,7 +196,34 @@ public class ThirdPersonController3 : MonoBehaviour
 //			gameController.SetDeath();
 //			Invoke("DestroyPlayer", 1);
 		}
+	}
 
+	void CheckGravity()
+	{
+		RaycastHit hit;
+		if (Physics.Raycast (transform.position, -Vector3.up, out hit))
+		{
+			if (hit.transform.tag == "AntiGrav")
+			{
+				ApplyAntigravity();
+			}
+			else
+			{
+				StopAntigravity();
+			}
+		}
+	}
+
+	void ApplyAntigravity ()
+	{
+		target.AddForce(0f, -2.0f * Physics.gravity.y * target.mass, 0f);
+		gameController.PlayAudioGrav ();
+
+	}
+
+	void StopAntigravity()
+	{
+		// TODO
 	}
 
 	void DestroyPlayer()

@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PhysicalWindZone.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ThirdPersonController3.cs">
     <Files>
-      <File FileName="Assets\Scripts\PhysicalWindZone.cs" Line="15" Column="2" />
+      <File FileName="Assets\Scripts\ThirdPersonController3.cs" Line="221" Column="3" />
+      <File FileName="Assets\Scripts\GameController.cs" Line="167" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
