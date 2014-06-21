@@ -1,8 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\..\Unity\Prototype - Player\Assets\CubeRotator.cs">
     <Files>
       <File FileName="..\..\..\..\Unity\Prototype - Player\Assets\CubeRotator.cs" Line="13" Column="64" />
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ThirdPersonController3.cs">
+    <Files>
+      <File FileName="Assets\Scripts\ThirdPersonController3.cs" Line="221" Column="3" />
+      <File FileName="Assets\Scripts\GameController.cs" Line="167" Column="21" />
+>>>>>>> origin/master
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
