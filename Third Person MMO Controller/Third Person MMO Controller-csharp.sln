@@ -1,0 +1,45 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{3720C645-9CBD-5D97-4F8B-8EC18B74D7C0}") = "Third Person MMO Controller", "Assembly-CSharp-vs.csproj", "{F0B40D03-DE7C-585C-9E6B-CF8F2C08B0DC}"
+EndProject
+Project("{3720C645-9CBD-5D97-4F8B-8EC18B74D7C0}") = "Third Person MMO Controller", "Assembly-CSharp-Editor-vs.csproj", "{15B2F71D-826E-4CF7-98E4-41B96DAAFA56}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F0B40D03-DE7C-585C-9E6B-CF8F2C08B0DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0B40D03-DE7C-585C-9E6B-CF8F2C08B0DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0B40D03-DE7C-585C-9E6B-CF8F2C08B0DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0B40D03-DE7C-585C-9E6B-CF8F2C08B0DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15B2F71D-826E-4CF7-98E4-41B96DAAFA56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15B2F71D-826E-4CF7-98E4-41B96DAAFA56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15B2F71D-826E-4CF7-98E4-41B96DAAFA56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15B2F71D-826E-4CF7-98E4-41B96DAAFA56}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+																		GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = null
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+		$0.TextStylePolicy = $3
+		$3.FileWidth = 120
+		$3.TabWidth = 4
+		$3.EolMarker = Unix
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/plain
+		$3.scope = text/plain
+	EndGlobalSection
+
+EndGlobal
