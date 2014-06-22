@@ -33,8 +33,11 @@ public class ThirdPersonController : MonoBehaviour
 		// Tweak if character lands too soon or gets stuck "in air" often
 		
 		
-	private bool grounded, walking;
-	
+	private bool grounded;
+
+	public bool canRun;
+	public bool isActing; // Switch to true when the player is taking actions including running
+
 	
 	public bool Grounded
 	// Make our grounded status available for other components
@@ -78,7 +81,8 @@ public class ThirdPersonController : MonoBehaviour
 
 		target.freezeRotation = true;
 			// We will be controlling the rotation of the target, so we tell the physics system to leave it be
-		walking = false;
+		canRun = true;
+		isActing = false;
 	}
 	
 	
@@ -111,59 +115,7 @@ public class ThirdPersonController : MonoBehaviour
 		
 		if (Input.GetButtonDown ("ToggleWalk"))
 		{
-			walking = !walking;
-		}
-
-		
-		
-		if (Input.GetKeyDown(KeyCode.F))
-		{
-			//Debug.Log(Input.mousePosition);
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-			Vector3 mousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-			Debug.DrawRay(ray.origin, ray.direction * 10, Color.yellow);
-			//Debug.DrawRay(target.transform.position, rayDirection);
-
-			RaycastHit hit;
-
-			if (Physics.Raycast(ray, out hit))
-			{
-				if (hit.collider.gameObject.tag == "Pickup")
-				{
-					//Debug.Log("Hit Pickup!");
-
-					Vector3 objectPos = hit.collider.transform.position;
-
-					if (Vector3.Distance(target.transform.position, objectPos) < 2)
-					{
-						if (Vector3.Angle(target.transform.forward, objectPos - target.transform.position) < 60)
-						{
-							Debug.Log("Pick Up!");
-							Destroy(hit.collider.gameObject);
-						}
-						else
-						{
-							Debug.Log("Wrong Direction!");
-						}
-
-					}
-					else
-					{
-						Debug.Log("Too Far Away!");
-					}
-
-				}
-
-			}
-
-
-//			if (Physics.Raycast(target.transform.position, rayDirection, out hit))
-//			{
-//				Debug.Log(hit.point.ToString());
-//			}
-			
+			canRun = !canRun;
 		}
 
 	}
@@ -219,16 +171,30 @@ public class ThirdPersonController : MonoBehaviour
 				{
 					onJump ();
 				}
+
+				isActing = true;
+
 			}
 			else
 			// Only allow movement controls if we did not just jump
 			{
 				Vector3 movement = Input.GetAxis ("Vertical") * target.transform.forward +
 					SidestepAxisInput * target.transform.right;
-				//Debug.Log(walking.ToString());
-				float appliedSpeed = walking ? speed / walkSpeedDownscale : speed;
-					// Scale down applied speed if in walk mode
-				
+
+				float appliedSpeed = speed / walkSpeedDownscale;
+
+
+				if (canRun && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
+				{
+					//Debug.Log("Running!");
+					appliedSpeed *= walkSpeedDownscale;
+					isActing = true;
+				}
+				else
+				{
+					//Debug.Log("Walking!");
+					isActing = false;
+				}
 				if (Input.GetAxis ("Vertical") < 0.0f)
 				// Scale down applied speed if walking backwards
 				{
