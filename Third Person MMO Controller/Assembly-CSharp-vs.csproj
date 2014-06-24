@@ -52,12 +52,16 @@
      <Compile Include="Assets\Demo\Assets\SetupVerification.cs" />
      <Compile Include="Assets\Scripts\CubeRotator.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\HeadUpDisplay.cs" />
      <Compile Include="Assets\Scripts\HealthSystem.cs" />
+     <Compile Include="Assets\Scripts\Inventory.cs" />
      <Compile Include="Assets\Scripts\PickupAction.cs" />
      <Compile Include="Assets\Scripts\ScrollBarEssentials.cs" />
+     <Compile Include="Assets\Scripts\Stamina.cs" />
      <Compile Include="Assets\Scripts\ThirdPersonCamera.cs" />
      <Compile Include="Assets\Scripts\ThirdPersonController.cs" />
      <Compile Include="Assets\Scripts\ThrowBall.cs" />
+     <Compile Include="Assets\Scripts\timer.cs" />
      <None Include="Assets\Demo\Shaders\NewShader.shader" />
      <None Include="Assets\Demo\READ ME FIRST.txt" />
   </ItemGroup>

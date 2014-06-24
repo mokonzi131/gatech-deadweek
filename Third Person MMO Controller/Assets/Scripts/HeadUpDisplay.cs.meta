@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 035cf225876d145549ade2da40664f09
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - can: {fileID: 2800000, guid: 4e54f4aca4281485d9a4377812cafb83, type: 3}
+  - backpack: {fileID: 2800000, guid: 2f263ce90827043b0a49c72760ca9073, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

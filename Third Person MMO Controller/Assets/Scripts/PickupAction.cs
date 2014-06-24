@@ -4,13 +4,16 @@ using System.Collections;
 public class PickupAction : MonoBehaviour {
 
 	
-	public Rigidbody target;
+	private Rigidbody target;
 
 	public GUIText warningText;
 
 	public float warningTextTimeout = 1.0f;
 	float lastWarningTextTime = -10.0f;
 
+	void Start() {
+		target = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -41,9 +44,16 @@ public class PickupAction : MonoBehaviour {
 					{
 						if (Vector3.Angle(target.transform.forward, objectPos - target.transform.position) < 60)
 						{
-							Debug.Log("Pick Up!");
-							UpdateWarningText("Pick Up!");
-							Destroy(hit.collider.gameObject);
+							Inventory inventory = GameObject.FindWithTag("GameController").GetComponent<Inventory>();
+							if(inventory.addItem(Inventory.ItemCategory.BOOK, new Item(25, "cube"))){
+								Debug.Log("Pick Up!");
+								UpdateWarningText("Pick Up!");
+								Destroy(hit.collider.gameObject);
+							} else {
+								Debug.Log("There is no more room for this in your backpack!");
+								UpdateWarningText("There is no more room for this in your backpack!");
+							}
+						
 						}
 						else
 						{
