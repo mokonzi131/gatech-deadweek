@@ -17,7 +17,7 @@ public class ThrowBall : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.T) && inventory.remove(Inventory.ItemCategory.BOOK))
+		if (Input.GetKeyDown(KeyCode.T))
 		{
 
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -49,9 +49,14 @@ public class ThrowBall : MonoBehaviour {
 
 				//Debug.Log(relativeVelocity.ToString());
 
-
-				GameObject book = Instantiate(throwable, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity) as GameObject;
-				book.rigidbody.velocity = worldVelocity;
+				if (Vector3.Angle(localDirection, transform.forward )<= 90)
+				{
+					if (inventory.remove(Inventory.ItemCategory.BOOK))
+					{
+						GameObject book = Instantiate(throwable, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity) as GameObject;
+						book.rigidbody.velocity = worldVelocity;
+					}
+				}
 			}
 
 		}
