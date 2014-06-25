@@ -34,7 +34,7 @@ public class PickupAction : MonoBehaviour {
 			
 			if (Physics.Raycast(ray, out hit))
 			{
-				if (hit.collider.gameObject.tag == "Pickup")
+				if (hit.collider.gameObject.tag == "Book" || hit.collider.gameObject.tag == "Drink" || hit.collider.gameObject.tag == "Food")
 				{
 					//Debug.Log("Hit Pickup!");
 					
@@ -42,13 +42,20 @@ public class PickupAction : MonoBehaviour {
 					
 					if (Vector3.Distance(target.transform.position, objectPos) < 2)
 					{
-						if (Vector3.Angle(target.transform.forward, objectPos - target.transform.position) < 60)
+						if (Vector3.Angle(target.transform.forward, objectPos - target.transform.position) < 80)
 						{
 							Inventory inventory = GameObject.FindWithTag("GameController").GetComponent<Inventory>();
-							if(inventory.addItem(Inventory.ItemCategory.BOOK, new Item(25, "cube"))){
+							Inventory.ItemCategory c = Inventory.ItemCategory.FOOD ;
+							if (hit.collider.gameObject.tag == "Book")
+								c = Inventory.ItemCategory.BOOK;
+							float mass = hit.collider.gameObject.rigidbody.mass ;
+							if (hit.collider.gameObject.tag == "Drink")
+								mass /= 10 ;
+							if(inventory.addItem(c, new Item(mass, hit.collider.gameObject.name))){
 								Debug.Log("Pick Up!");
 								UpdateWarningText("Pick Up!");
-								Destroy(hit.collider.gameObject);
+								if(hit.collider.gameObject.tag != "Drink")
+									hit.collider.gameObject.SetActive(false);
 							} else {
 								Debug.Log("There is no more room for this in your backpack!");
 								UpdateWarningText("There is no more room for this in your backpack!");

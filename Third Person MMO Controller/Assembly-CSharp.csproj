@@ -51,6 +51,7 @@
      <Compile Include="Assets\Demo\Assets\Label\Label.cs" />
      <Compile Include="Assets\Demo\Assets\SetupVerification.cs" />
      <Compile Include="Assets\Scripts\CubeRotator.cs" />
+     <Compile Include="Assets\Scripts\Drink.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\HeadUpDisplay.cs" />
      <Compile Include="Assets\Scripts\HealthSystem.cs" />
@@ -61,6 +62,7 @@
      <Compile Include="Assets\Scripts\ThirdPersonCamera.cs" />
      <Compile Include="Assets\Scripts\ThirdPersonController.cs" />
      <Compile Include="Assets\Scripts\ThrowBall.cs" />
+     <Compile Include="Assets\Scripts\createBooks.cs" />
      <Compile Include="Assets\Scripts\timer.cs" />
      <None Include="Assets\Demo\Shaders\NewShader.shader" />
      <None Include="Assets\Demo\READ ME FIRST.txt" />

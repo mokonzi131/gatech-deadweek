@@ -3,15 +3,21 @@ using System.Collections;
 
 public class ThrowBall : MonoBehaviour {
 
-	public GameObject ball;
+	private GameObject throwable;
+	private Inventory inventory;	
 
 	public float power = 10.0f;
 
 	float gravity = 9.8f;
 
+	void Start(){
+		throwable = GameObject.FindGameObjectWithTag ("Book");
+		inventory = GameObject.FindGameObjectWithTag ("GameController").GetComponent<Inventory>();
+	}
+
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.T))
+		if (Input.GetKeyDown(KeyCode.T) && inventory.remove(Inventory.ItemCategory.BOOK))
 		{
 
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -43,8 +49,9 @@ public class ThrowBall : MonoBehaviour {
 
 				//Debug.Log(relativeVelocity.ToString());
 
-				GameObject tBall = Instantiate(ball, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity) as GameObject;
-				tBall.rigidbody.velocity = worldVelocity;
+
+				GameObject book = Instantiate(throwable, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity) as GameObject;
+				book.rigidbody.velocity = worldVelocity;
 			}
 
 		}

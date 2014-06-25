@@ -36,10 +36,7 @@ public class Inventory : MonoBehaviour {
 
 		items [(int) c].Add (i);
 
-		float newWeight = getWeight ();
-		inventoryBar.setInventoryUsage (newWeight);
-
-		GameObject.FindWithTag("Player").GetComponent<Rigidbody>().mass = 1 + newWeight/maxWeight;
+		dispatchWeight();
 
 		return true;
 	}
@@ -56,5 +53,22 @@ public class Inventory : MonoBehaviour {
 
 	public int getMaxWeight(){
 		return maxWeight;
+	}
+
+	public bool remove(ItemCategory c){
+		if (items [(int)c].Count == 0)
+			return false;
+
+		items [(int)c].RemoveAt (0);
+
+		dispatchWeight();
+
+		return true;
+	}
+
+	private void dispatchWeight(){
+		float newWeight = getWeight ();
+		inventoryBar.setInventoryUsage (newWeight);
+		GameObject.FindWithTag("Player").GetComponent<Rigidbody>().mass = 2 + newWeight;
 	}
 }

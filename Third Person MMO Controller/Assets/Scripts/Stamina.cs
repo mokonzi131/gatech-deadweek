@@ -23,15 +23,25 @@ public class Stamina : MonoBehaviour {
 		staminaBar.setMaxStamina (maxStamina);
 		stamina = maxStamina;
 	}
+
+	public void deltaStamina(float ds){
+		stamina += ds;
+		stamina = Mathf.Max(0, Mathf.Min(stamina, (float)maxStamina));
+	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (playerController.hasJump) {
+			deltaStamina(- playerController.rigidbody.mass * StaminaConsumption * 1);
+			playerController.hasJump = false;
+		}
 		if (playerController.rigidbody.velocity.magnitude > 0.1 && playerController.isActing) {
-			stamina -= playerController.rigidbody.mass * StaminaConsumption * Time.deltaTime;
+			deltaStamina(-playerController.rigidbody.mass * StaminaConsumption * Time.deltaTime);
 			lastActingTime = Time.time;
 		} else {
-			if (lastActingTime + StaminaRecoveryTimeout < Time.time)
-				stamina += StaminaRecovery * Time.deltaTime;
+			if (lastActingTime + StaminaRecoveryTimeout < Time.time){
+				deltaStamina(StaminaRecovery * Time.deltaTime);
+			}
 		}
 		
 		if (stamina < 0.03*maxStamina)

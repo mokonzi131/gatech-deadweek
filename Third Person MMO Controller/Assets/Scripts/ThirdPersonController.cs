@@ -37,7 +37,7 @@ public class ThirdPersonController : MonoBehaviour
 
 	public bool canRun;
 	public bool isActing; // Switch to true when the player is taking actions including running
-
+	public bool hasJump; // Switch to true after each jump
 	
 	public bool Grounded
 	// Make our grounded status available for other components
@@ -172,8 +172,8 @@ public class ThirdPersonController : MonoBehaviour
 					onJump ();
 				}
 
-				isActing = true;
-
+				//isActing = true;
+				hasJump = true;
 			}
 			else
 			// Only allow movement controls if we did not just jump
