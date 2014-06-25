@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ZombieController.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameController.cs" Line="33" Column="12" />
+      <File FileName="Assets\Scripts\GameController.cs" Line="39" Column="3" />
+      <File FileName="Assets\Scripts\ZombieController.cs" Line="42" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

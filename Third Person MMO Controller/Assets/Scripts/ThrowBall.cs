@@ -10,9 +10,14 @@ public class ThrowBall : MonoBehaviour {
 
 	float gravity = 9.8f;
 
+	int layerMask;
+
 	void Start(){
 		throwable = GameObject.FindWithTag ("Book");
 		inventory = GameObject.FindWithTag ("GameController").GetComponent<Inventory>();
+		
+		layerMask = 1 << 8;
+		layerMask = ~layerMask;
 	}
 
 	// Update is called once per frame
@@ -29,7 +34,7 @@ public class ThrowBall : MonoBehaviour {
 			
 			RaycastHit hit;
 			
-			if (Physics.Raycast(ray, out hit))
+			if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
 			{
 				Vector3 relativePos = new Vector3();
 				relativePos.z = 0;

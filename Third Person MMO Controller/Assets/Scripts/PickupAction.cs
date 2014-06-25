@@ -11,8 +11,13 @@ public class PickupAction : MonoBehaviour {
 	public float warningTextTimeout = 1.0f;
 	float lastWarningTextTime = -10.0f;
 
+	int layerMask;
+
 	void Start() {
 		target = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();
+		layerMask = 1 << 8;
+		
+		layerMask = ~layerMask;
 	}
 	
 	// Update is called once per frame
@@ -31,8 +36,9 @@ public class PickupAction : MonoBehaviour {
 			//Debug.DrawRay(target.transform.position, rayDirection);
 			
 			RaycastHit hit;
-			
-			if (Physics.Raycast(ray, out hit))
+
+
+			if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
 			{
 				if (hit.collider.gameObject.tag == "Book" || hit.collider.gameObject.tag == "Drink" || hit.collider.gameObject.tag == "Food")
 				{
