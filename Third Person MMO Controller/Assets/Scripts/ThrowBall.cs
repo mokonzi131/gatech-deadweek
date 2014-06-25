@@ -11,8 +11,8 @@ public class ThrowBall : MonoBehaviour {
 	float gravity = 9.8f;
 
 	void Start(){
-		throwable = GameObject.FindGameObjectWithTag ("Book");
-		inventory = GameObject.FindGameObjectWithTag ("GameController").GetComponent<Inventory>();
+		throwable = GameObject.FindWithTag ("Book");
+		inventory = GameObject.FindWithTag ("GameController").GetComponent<Inventory>();
 	}
 
 	// Update is called once per frame
