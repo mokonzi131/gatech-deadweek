@@ -64,6 +64,7 @@
      <Compile Include="Assets\Scripts\ThrowBall.cs" />
      <Compile Include="Assets\Scripts\createBooks.cs" />
      <Compile Include="Assets\Scripts\timer.cs" />
+     <Compile Include="Assets\ZombieController.cs" />
      <None Include="Assets\Demo\Shaders\NewShader.shader" />
      <None Include="Assets\Demo\READ ME FIRST.txt" />
   </ItemGroup>
