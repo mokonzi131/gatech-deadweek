@@ -1,9 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ZombieController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HeadUpDisplay.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameController.cs" Line="39" Column="3" />
-      <File FileName="Assets\Scripts\ZombieController.cs" Line="42" Column="11" />
+      <File FileName="Assets/Scripts/ThirdPersonController.cs" Line="10" Column="24" />
+      <File FileName="Assets/Scripts/HeadUpDisplay.cs" Line="225" Column="39" />
+      <File FileName="Assets/Scripts/PickupAction.cs" Line="29" Column="34" />
+      <File FileName="Assets/Scripts/Inventory.cs" Line="74" Column="53" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

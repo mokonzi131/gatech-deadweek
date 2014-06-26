@@ -7,7 +7,7 @@ public class ThirdPersonController : MonoBehaviour
 {
 	public Rigidbody target;
 		// The object we're steering
-	public float speed = 1.0f, walkSpeedDownscale = 2.0f, turnSpeed = 2.0f, mouseTurnSpeed = 0.3f, jumpSpeed = 1.0f;
+	public float speed = 4f, walkSpeedDownscale = 2.0f, turnSpeed = 2.0f, mouseTurnSpeed = 0.3f, jumpSpeed = 1.0f;
 		// Tweak to ajust character responsiveness
 	public LayerMask groundLayers = -1;
 		// Which layers should be walkable?
@@ -162,7 +162,7 @@ public class ThirdPersonController : MonoBehaviour
 				target.AddForce (
 					jumpSpeed * target.transform.up +
 						target.velocity.normalized * directionalJumpFactor,
-					ForceMode.VelocityChange
+					ForceMode.Impulse
 				);
 					// When jumping, we set the velocity upward with our jump speed
 					// plus some application of directional movement
@@ -204,7 +204,7 @@ public class ThirdPersonController : MonoBehaviour
 				if (movement.magnitude > inputThreshold)
 				// Only apply movement if we have sufficient input
 				{
-					target.AddForce (movement.normalized * appliedSpeed, ForceMode.VelocityChange);
+					target.AddForce (movement.normalized * appliedSpeed, ForceMode.Impulse);
 				}
 				else
 				// If we are grounded and don't have significant input, just stop horizontal movement

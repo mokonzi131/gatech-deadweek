@@ -69,6 +69,9 @@ public class Inventory : MonoBehaviour {
 	private void dispatchWeight(){
 		float newWeight = getWeight ();
 		inventoryBar.setInventoryUsage (newWeight);
+		InventoryDisplay ind = GameObject.FindWithTag("HeadUpDisplay").GetComponent<HeadUpDisplay>().inventoryContent;
+		ind.setBooksNumber (items [(int)ItemCategory.BOOK].Count);
+		ind.setDrinksNumber (items [(int)ItemCategory.FOOD].Count);
 		GameObject.FindWithTag("Player").GetComponent<Rigidbody>().mass = 2 + newWeight;
 	}
 }
