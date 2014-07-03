@@ -1,0 +1,13 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\AIScriptNavMeshWithHide.cs">
+    <Files>
+      <File FileName="Assets\Scripts\AIScriptNavMeshWithHide.cs" Line="332" Column="3" />
+      <File FileName="Assets\Scripts\AIScriptNavMeshWithHide.cs" Line="474" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
