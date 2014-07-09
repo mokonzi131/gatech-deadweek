@@ -47,11 +47,12 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\AIScriptCC.cs" />
+     <Compile Include="Assets\Scripts\AIScriptHybridWithHide.cs" />
      <Compile Include="Assets\Scripts\AIScriptNavMesh.cs" />
      <Compile Include="Assets\Scripts\AIScriptNavMeshWithHide.cs" />
      <Compile Include="Assets\Scripts\AdjustCoverPositionScript.cs" />
      <Compile Include="Assets\Scripts\AnimationController.cs" />
-     <Compile Include="Assets\Scripts\Astart.cs" />
+     <Compile Include="Assets\Scripts\Astar.cs" />
      <Compile Include="Assets\Scripts\AxePropertyScript.cs" />
      <Compile Include="Assets\Scripts\CameraControllerSimple.cs" />
      <Compile Include="Assets\Scripts\CloseCameraFade.cs" />
