@@ -31,11 +31,11 @@ class Pair {
 	}
 }
 
-public class Astart : MonoBehaviour {
+public class Astar : MonoBehaviour {
 	public bool dilateObstacle = false ;
 	public float cellSize = 0.5f;
 
-	public bool testAstart = false;
+	public bool testAstar = false;
 	public Transform source;
 	public Transform destination;
 	private Transform oldSource;
@@ -84,7 +84,7 @@ public class Astart : MonoBehaviour {
 		}
 	}
 
-	bool getPath(Vector3 source, Vector3 dest, out List<Vector3> path){
+	public bool getPath(Vector3 source, Vector3 dest, out List<Vector3> path){
 		path = new List<Vector3> ();
 		path.Add (dest);
 
@@ -94,7 +94,7 @@ public class Astart : MonoBehaviour {
 		int xDest = Mathf.RoundToInt((dest.x - minX) / cellSize) ;
 		int zDest = Mathf.RoundToInt((dest.z - minZ) / cellSize) ;
 
-		Debug.Log (xSource + ", " + zSource + ", " + xDest + ", " + zDest);
+		//Debug.Log (xSource + ", " + zSource + ", " + xDest + ", " + zDest);
 
 		if (xSource == xDest && zSource == zDest)
 			return true;
@@ -217,7 +217,7 @@ public class Astart : MonoBehaviour {
 			}
 		}
 
-		if (testAstart) {
+		if (testAstar) {
 			Gizmos.color = Color.blue ;
 			if(oldSource != source || oldDest != destination){
 				getPath(source.position, destination.position, out pathToDraw);

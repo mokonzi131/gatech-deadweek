@@ -1,8 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CameraControls.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AIScriptHybridWithHide.cs">
     <Files>
-      <File FileName="Assets\CameraControls.cs" Line="13" Column="3" />
+      <File FileName="Assets/Scripts/Astar.cs" Line="97" Column="5" />
+      <File FileName="Assets/Scripts/WaypointScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ThirdPersonController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIScriptCC.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIScriptNavMeshWithHide.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIScriptHybridWithHide.cs" Line="441" Column="24" />
+>>>>>>> origin/master
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
