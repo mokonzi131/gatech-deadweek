@@ -1,6 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\VictoryScript.cs">
+    <Files>
+      <File FileName="Assets\Scripts\StealBookScript.cs" Line="6" Column="32" />
+      <File FileName="Assets\Scripts\VictoryScript.cs" Line="5" Column="2" />
+      <File FileName="Assets\Scripts\ThirdPersonCamera.cs" Line="180" Column="20" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
