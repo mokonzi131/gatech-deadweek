@@ -70,6 +70,8 @@ public class ZombieScript1 : MonoBehaviour
 	int layerMask = 1 << 8;
 
 	Animator _animator;
+	private Vector3 lastPosition;
+	private int updateAnim;
 
 	void Start()
 	{
@@ -120,14 +122,25 @@ public class ZombieScript1 : MonoBehaviour
 			StartCoroutine(delEnum());
 		}
 	}
+
+	void LateUpdate()
+	{
+		if(updateAnim == 0)
+		{
+			_animator.SetFloat ("linearSpeed", (lastPosition - transform.position).magnitude/Time.deltaTime/5.0f);
+			//Debug.Log ("velocity = " + (lastPosition - target.transform.position).magnitude/Time.deltaTime/5.0f);
+			lastPosition = transform.position;
+		}
+		updateAnim = (updateAnim + 1) % 5;
+	}
 	
 	#region movement functions
 	void Move(Transform target, float speed)
 	{
 		_agent.speed = speed;
 		_agent.SetDestination (target.position);
-		_animator.SetFloat ("linearSpeed", speed);
-		Debug.Log ("linearSpeed = " + speed);
+//		_animator.SetFloat ("linearSpeed", speed);
+//		Debug.Log ("linearSpeed = " + speed);
 	}
 	
 	
@@ -204,7 +217,7 @@ public class ZombieScript1 : MonoBehaviour
 		_transform.LookAt (aPos);
 		//animation.CrossFade ("Idle");
 		stateText = "Attract Idle";
-		_animator.SetFloat ("linearSpeed", 0.0f);
+		//_animator.SetFloat ("linearSpeed", 0.0f);
 	}
 	
 
@@ -288,15 +301,15 @@ public class ZombieScript1 : MonoBehaviour
 	#endregion
 	
 	
-	#region GUIFunction
-	void OnGUI()
-	{
-		Vector2 targetPos;
-		targetPos = Camera.main.WorldToScreenPoint (_transform.position + playerOffset);
-		
-		GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 80, 20), stateText);
-	}
-	#endregion
+//	#region GUIFunction
+//	void OnGUI()
+//	{
+//		Vector2 targetPos;
+//		targetPos = Camera.main.WorldToScreenPoint (_transform.position + playerOffset);
+//		
+//		GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 80, 20), stateText);
+//	}
+//	#endregion
 
 
 	#region AttractionFunction

@@ -159,12 +159,12 @@ public class ThirdPersonController_Student : MonoBehaviour
 	void FixedUpdate ()
 	// Handle movement here since physics will only be calculated in fixed frames anyway
 	{
-		grounded = Physics.Raycast (
+		grounded = true; /*Physics.Raycast (
 			target.transform.position + target.transform.up * groundedCheckOffset,
 			target.transform.up * -1,
 			groundedDistance,
 			groundLayers
-		);
+		);*/
 			// Shoot a ray downward to see if we're touching the ground
 
 	 

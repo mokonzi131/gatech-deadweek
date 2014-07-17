@@ -141,7 +141,7 @@ public class InventoryDisplay {
 		nbBooks.AddComponent ("GUIText");
 		nbBooks.transform.parent = background.transform;
 		nbBooks.transform.position = new Vector3 (0,0,1);
-		nbBooks.guiText.text = "∞";
+		nbBooks.guiText.text = "0";
 		nbBooks.guiText.fontSize = 30;
 		nbBooks.guiText.anchor = TextAnchor.MiddleLeft;
 		nbBooks.guiText.pixelOffset =
@@ -158,8 +158,8 @@ public class InventoryDisplay {
 	}
 
 	public void setBooksNumber(int number) {
-		//nbBooks.guiText.text = number.ToString();
-		nbBooks.guiText.text = "∞";
+		nbBooks.guiText.text = number.ToString();
+		//nbBooks.guiText.text = "∞";
 	}
 	
 	public void setDrinksNumber(int number) {
@@ -238,6 +238,6 @@ public class HeadUpDisplay : MonoBehaviour {
 
 		energy.display ();
 		inventory.display ();
-		//timer.display ();
+		timer.display ();
 	}
 }

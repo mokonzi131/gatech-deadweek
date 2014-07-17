@@ -132,7 +132,7 @@ public class AIScript1 : MonoBehaviour
 		if (Vector3.Distance(_transform.position, waypoint[index].position) > range)
 		{
 			Move(waypoint[index], patrolSpeed);
-			//animation.CrossFade("Walk");
+			animation.CrossFade("Walk");
 			stateText = "Walk";
 		}
 		else
@@ -162,7 +162,7 @@ public class AIScript1 : MonoBehaviour
 	void AttackMelee()
 	{
 		Move(player, runSpeed);
-		//animation.CrossFade("Run");
+		animation.CrossFade("Run");
 		stateText = "Melee Attack";
 		if (Vector3.Distance(_transform.position, player.position) < 1.0f)
 			player.gameObject.GetComponent<IsAttackedScript>().isMeleeAttacked();
@@ -171,7 +171,7 @@ public class AIScript1 : MonoBehaviour
 	void AttackWalkCloser()
 	{
 		Move (player, alertSpeed);
-		//animation.CrossFade ("Walk");
+		animation.CrossFade ("Walk");
 		stateText = "Alert";
 	}
 
@@ -182,7 +182,7 @@ public class AIScript1 : MonoBehaviour
 		if (relativeDist.magnitude > 1.0f)
 		{
 			Move (attractPos, patrolSpeed);
-			//animation.CrossFade ("Walk");
+			animation.CrossFade ("Walk");
 			stateText = "Attract Walk";
 		}
 		else
@@ -198,7 +198,7 @@ public class AIScript1 : MonoBehaviour
 		Vector3 aPos = attractPos.position;
 		aPos.y = _transform.position.y;
 		_transform.LookAt (aPos);
-		//animation.CrossFade ("Idle");
+		animation.CrossFade ("Idle");
 		stateText = "Attract Idle";
 	}
 	
@@ -211,7 +211,7 @@ public class AIScript1 : MonoBehaviour
 	IEnumerator Wait()
 	{
 		stateText = "Idle";
-		//animation.CrossFade("Idle");
+		animation.CrossFade("Idle");
 		yield return new WaitForSeconds(2.0f);
 		NextIndex();
 		del = true;

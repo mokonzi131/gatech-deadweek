@@ -46,7 +46,8 @@ public class PickupAction : MonoBehaviour {
 			
 			foreach(var hitCollider in hitColliders)
 			{
-				if (hitCollider.gameObject.tag == "Book" || hitCollider.gameObject.tag == "Drink" || hitCollider.gameObject.tag == "Food")
+				if (hitCollider.gameObject.tag == "Book" || hitCollider.gameObject.tag == "Drink" || 
+				    hitCollider.gameObject.tag == "Food" || hitCollider.gameObject.tag == "TheBook")
 				{
 					Vector3 objectDirection = hitCollider.transform.position - target.transform.position;
 					objectDirection.y = 0;
@@ -69,27 +70,31 @@ public class PickupAction : MonoBehaviour {
 			if (minAngle < 80)
 			{
 				
-				UpdateWarningText("Pick Up!");
-				if (targetObject.tag != "Drink")
-					Destroy(targetObject);
+//				UpdateWarningText("Pick Up!");
+//				if (targetObject.tag != "Drink")
+//					Destroy(targetObject);
 
-//				Inventory inventory = GameObject.FindWithTag("GameController").GetComponent<Inventory>();
-//				Inventory.ItemCategory c = Inventory.ItemCategory.FOOD ;
-//				if (targetObject.tag == "Book")
-//					c = Inventory.ItemCategory.BOOK;
-//				float mass = targetObject.rigidbody.mass ;
-//				if (targetObject.tag == "Drink")
-//					mass /= 10 ;
-//				if(inventory.addItem(c, new Item(mass, targetObject.name))){
-//					Debug.Log("Pick Up!");
-//					UpdateWarningText("Pick Up!");
-//					if(targetObject.tag != "Drink")
-//						Destroy(targetObject);
-//					//targetObject.SetActive(false);
-//				} else {
-//					Debug.Log("There is no more room for this in your backpack!");
-//					UpdateWarningText("There is no more room for this in your backpack!");
-//				}
+				Inventory inventory = GameObject.FindWithTag("GameController").GetComponent<Inventory>();
+				Inventory.ItemCategory c = Inventory.ItemCategory.FOOD ;
+				if (targetObject.tag == "Book")
+					c = Inventory.ItemCategory.BOOK;
+				float mass = targetObject.rigidbody.mass ;
+				if (targetObject.tag == "Drink")
+					mass /= 10 ;
+				if(targetObject.tag != "TheBook" && inventory.addItem(c, new Item(mass, targetObject.name))){
+					Debug.Log("Pick Up!");
+					UpdateWarningText("Pick Up!");
+					if(targetObject.tag != "Drink")
+						Destroy(targetObject);
+					//targetObject.SetActive(false);
+				} else if (targetObject.tag == "TheBook"){
+					inventory.hasRetrieveTheBook = true ;
+					UpdateWarningText("You found THE Book!");
+					Destroy(targetObject);
+				} else {
+					Debug.Log("There is no more room for this in your backpack!");
+					UpdateWarningText("There is no more room for this in your backpack!");
+				}
 				
 			}
 			else

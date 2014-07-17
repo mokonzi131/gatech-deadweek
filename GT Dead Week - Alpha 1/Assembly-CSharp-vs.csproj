@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\FadeInOut.cs" />
      <Compile Include="Assets\Scripts\AIScript1.cs" />
      <Compile Include="Assets\Scripts\AIScript2.cs" />
      <Compile Include="Assets\Scripts\AIScriptHybridWithHide.cs" />
@@ -70,10 +71,14 @@
      <Compile Include="Assets\Scripts\ThirdPersonController.cs" />
      <Compile Include="Assets\Scripts\ThirdPersonController_Student.cs" />
      <Compile Include="Assets\Scripts\ThrowScript.cs" />
+     <Compile Include="Assets\Scripts\Timer.cs" />
      <Compile Include="Assets\Scripts\VictoryScript.cs" />
      <Compile Include="Assets\Scripts\WaypointScript.cs" />
      <Compile Include="Assets\Scripts\ZombieScript1.cs" />
+     <Compile Include="Assets\Scripts\ZombieScript2.cs" />
+     <Compile Include="Assets\Scripts\rotation.cs" />
      <Compile Include="Assets\lowpolyblocks\scripts\MouseLook.cs" />
+     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

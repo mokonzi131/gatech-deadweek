@@ -13,7 +13,7 @@ using System.Collections;
 public class ThrowScript : MonoBehaviour {
 	
 	public GameObject throwable;
-	//private Inventory inventory;	
+	private Inventory inventory;	
 
 	public Transform eyePoint;
 
@@ -27,7 +27,7 @@ public class ThrowScript : MonoBehaviour {
 
 	void Start(){
 		//throwable = GameObject.FindWithTag ("Book");
-		//inventory = GameObject.FindWithTag ("GameController").GetComponent<Inventory>();
+		inventory = GameObject.FindWithTag ("GameController").GetComponent<Inventory>();
 		
 		layerMask = 1 << 8;
 		layerMask = ~layerMask;
@@ -75,17 +75,19 @@ public class ThrowScript : MonoBehaviour {
 				if (Vector3.Angle(localDirection, transform.forward )<= 90)
 				{
 					
-					GameObject t1 = Instantiate(throwable, startPoint, Quaternion.identity) as GameObject;
+					//GameObject t1 = Instantiate(throwable, startPoint, Quaternion.identity) as GameObject;
 					//t1.gameObject.GetComponent<AxePropertyScript>().isPlayerAxe = true;
-					t1.gameObject.GetComponent<BookPropertyScript>().BeingThrowed();
-					t1.transform.LookAt(hit.point);
-					t1.rigidbody.velocity = worldVelocity;
+//					t1.gameObject.GetComponent<BookPropertyScript>().BeingThrowed();
+//					t1.transform.LookAt(hit.point);
+//					t1.rigidbody.velocity = worldVelocity;
 
-//					if (inventory.remove(Inventory.ItemCategory.BOOK))
-//					{
-//						GameObject book = Instantiate(throwable, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity) as GameObject;
-//						book.rigidbody.velocity = worldVelocity;
-//					}
+					if (inventory.remove(Inventory.ItemCategory.BOOK))
+					{
+						GameObject book = Instantiate(throwable, startPoint, Quaternion.identity) as GameObject;
+						book.gameObject.GetComponent<BookPropertyScript>().BeingThrowed();
+						book.transform.LookAt(hit.point);
+						book.rigidbody.velocity = worldVelocity;
+					}
 				}
 			}
 			

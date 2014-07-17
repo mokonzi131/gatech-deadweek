@@ -12,7 +12,7 @@ using System.Collections;
 
 public class Stamina : MonoBehaviour {
 
-	private ThirdPersonController playerController;
+	private ThirdPersonController_Student playerController;
 	
 	public float StaminaConsumption = 3.0f;
 	public float StaminaRecovery = 1.0f;
@@ -26,7 +26,7 @@ public class Stamina : MonoBehaviour {
 	private float stamina;
 	// Use this for initialization
 	void Start () {
-		playerController = GameObject.FindWithTag("Player").GetComponent<ThirdPersonController>();
+		playerController = GameObject.FindWithTag("Player").GetComponent<ThirdPersonController_Student>();
 
 		staminaBar = GameObject.FindWithTag("HeadUpDisplay").GetComponent<HeadUpDisplay>().energy;
 		staminaBar.setMaxStamina (maxStamina);
@@ -41,7 +41,7 @@ public class Stamina : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (playerController.hasJump) {
-			deltaStamina(- playerController.rigidbody.mass * StaminaConsumption * 1);
+			deltaStamina(- (playerController.rigidbody.mass - 1) * StaminaConsumption);
 			playerController.hasJump = false;
 		}
 		if (playerController.rigidbody.velocity.magnitude > 0.1 && playerController.isActing) {

@@ -27,6 +27,8 @@ public class Inventory : MonoBehaviour {
 
 	public int maxWeight;
 
+	public bool hasRetrieveTheBook = false ;
+
 	private InventoryBar inventoryBar;
 	private List<Item>[] items;
 	// Use this for initialization
