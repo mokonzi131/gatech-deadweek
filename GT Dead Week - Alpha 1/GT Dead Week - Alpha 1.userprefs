@@ -1,10 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\VictoryScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ZombieScript1.cs">
     <Files>
-      <File FileName="Assets\Scripts\StealBookScript.cs" Line="6" Column="32" />
-      <File FileName="Assets\Scripts\VictoryScript.cs" Line="5" Column="2" />
-      <File FileName="Assets\Scripts\ThirdPersonCamera.cs" Line="180" Column="20" />
+      <File FileName="Assets/Scripts/ThirdPersonController_Student.cs" Line="246" Column="23" />
+      <File FileName="Assets/Scripts/Drink.cs" Line="21" Column="1" />
+      <File FileName="../../Assets/Scripts/ThirdPersonController_Man.cs" Line="38" Column="55" />
+      <File FileName="Assets/Scripts/ZombieScript1.cs" Line="128" Column="43" />
+      <File FileName="../../Assets/Scripts/AIScriptHybridWithHideZombie.cs" Line="172" Column="12" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
