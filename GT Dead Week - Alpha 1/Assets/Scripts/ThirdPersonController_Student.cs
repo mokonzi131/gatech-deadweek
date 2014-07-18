@@ -124,7 +124,7 @@ public class ThirdPersonController_Student : MonoBehaviour
 				Screen.lockCursor = false;
 			}
 			
-			rotationAmount = Input.GetAxis ("Horizontal") * turnSpeed * Time.deltaTime;
+			rotationAmount = Input.GetAxis ("Sidestep") * turnSpeed * Time.deltaTime;
 		}
 		
 		target.transform.RotateAround (target.transform.up, rotationAmount);
@@ -148,13 +148,13 @@ public class ThirdPersonController_Student : MonoBehaviour
 		{
 			if (Input.GetMouseButton (1))
 			{
-				float sidestep = Input.GetAxis ("Sidestep"), horizontal = Input.GetAxis ("Horizontal");
+				float sidestep = Input.GetAxis ("Horizontal"), horizontal = Input.GetAxis ("Horizontal");
 				
 				return Mathf.Abs (sidestep) > Mathf.Abs (horizontal) ? sidestep : horizontal;
 			}
 			else
 			{
-				return Input.GetAxis ("Sidestep");
+				return Input.GetAxis ("Horizontal");
 			}
 		}
 	}
@@ -204,6 +204,7 @@ public class ThirdPersonController_Student : MonoBehaviour
 			{
 				Vector3 movement = Input.GetAxis ("Vertical") * target.transform.forward +
 					SidestepAxisInput * target.transform.right;
+
 
 				float appliedSpeed = speed / walkSpeedDownscale;
 

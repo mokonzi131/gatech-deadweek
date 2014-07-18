@@ -24,6 +24,9 @@ public class StaminaBar {
 		staminaDisplay_.transform.position = Vector3.zero;
 		staminaDisplay_.transform.localScale = Vector3.zero;
 		staminaDisplay_.guiTexture.texture = new Texture2D (1000, 1000);
+		Rect border = new Rect(10,-10,20,150);
+		border.position = Vector3.zero;
+		staminaDisplay_.guiTexture.border.Add(border);
 
 		staminaIcon_.AddComponent ("GUITexture");
 		staminaIcon_.transform.position = Vector3.zero;
@@ -54,6 +57,29 @@ public class StaminaBar {
 
 	public void setMaxStamina(int stamina) {
 		maxStamina_ = stamina > 0 ? stamina : 0;
+	}
+
+	public void flashStamina(){
+		bool status = staminaDisplay_.guiTexture.enabled;
+		if(status){
+			staminaDisplay_.guiTexture.enabled = false;
+		}else{
+			staminaDisplay_.guiTexture.enabled = true;
+		}
+	}
+
+	public IEnumerator flashStaminaToggle(){
+		yield return new WaitForSeconds(0.5f);
+		bool status = staminaDisplay_.guiTexture.enabled;
+		staminaDisplay_.guiTexture.enabled = !status;
+	}
+
+	public float getCurrentStamina(){
+		return currentStamina_;
+	}
+
+	public int getMaxStamina(){
+		return maxStamina_;
 	}
 }
 
@@ -237,6 +263,9 @@ public class HeadUpDisplay : MonoBehaviour {
 		}
 
 		energy.display ();
+		if(energy.getCurrentStamina() < (.25f * energy.getMaxStamina())){
+			StartCoroutine(energy.flashStaminaToggle());
+		}
 		inventory.display ();
 		timer.display ();
 	}
