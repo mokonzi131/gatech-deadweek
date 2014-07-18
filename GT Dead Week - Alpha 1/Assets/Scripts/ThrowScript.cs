@@ -38,7 +38,7 @@ public class ThrowScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if (Input.GetKeyDown(KeyCode.T))
+		if (Input.GetKeyDown(KeyCode.R))
 		{
 			Debug.Log(transform.forward.ToString());
 			startPoint = eyePoint.position + transform.forward * 0.2f;

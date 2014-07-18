@@ -24,8 +24,9 @@ public class StaminaBar {
 		staminaDisplay_.transform.position = Vector3.zero;
 		staminaDisplay_.transform.localScale = Vector3.zero;
 		staminaDisplay_.guiTexture.texture = new Texture2D (1000, 1000);
-		Rect border = new Rect(10,-10,20,150);
-		border.position = Vector3.zero;
+		Rect border = new Rect(50,50,50,500);
+		RectOffset borders = new RectOffset(5, 5, 5, 5);
+		//border.position = Vector3.zero;
 		staminaDisplay_.guiTexture.border.Add(border);
 
 		staminaIcon_.AddComponent ("GUITexture");
