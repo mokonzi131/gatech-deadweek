@@ -24,7 +24,7 @@ public class Drink : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.C) && inventory.remove (Inventory.ItemCategory.FOOD)) {
+		if ((Input.GetKeyDown (KeyCode.C) || Input.GetButtonDown("360_XButton")) && inventory.remove (Inventory.ItemCategory.FOOD)) {
 			stamina.deltaStamina(staminaRestauration);
 		}
 	}

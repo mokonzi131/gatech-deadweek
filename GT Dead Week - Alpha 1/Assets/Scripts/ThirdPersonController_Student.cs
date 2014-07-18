@@ -134,6 +134,10 @@ public class ThirdPersonController_Student : MonoBehaviour
 			canRun = !canRun;
 		}
 
+		if(Input.GetKeyDown (KeyCode.Escape)){
+			GameObject.FindGameObjectWithTag("GameController").GetComponent<FadeInOut>().EndScene() ;
+		}
+
 	}
 	
 	

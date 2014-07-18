@@ -22,7 +22,7 @@ public class ArrowTarget : MonoBehaviour {
 			transform.LookAt (book.transform.position);
 		}
 		Vector3 playerPos = player.transform.position;
-		playerPos += new Vector3(0, 3, 0);
+		playerPos += new Vector3(0, 2.5f, 0);
 		this.transform.position = playerPos;
 	}
 
