@@ -50,6 +50,7 @@ public class ThirdPersonController_Student : MonoBehaviour
 
 	public Animator animator;
 	private Vector3 lastPosition;
+	private Vector3 lastForward;
 	private int updateAnim;
 	
 	public bool Grounded
@@ -96,8 +97,11 @@ public class ThirdPersonController_Student : MonoBehaviour
 			// We will be controlling the rotation of the target, so we tell the physics system to leave it be
 		canRun = true;
 		isActing = false;
-		animator.SetFloat ("speed", 0.0f);
+		animator.SetFloat ("linear_speed", 0.0f);
+		animator.SetFloat ("angular_speed", 0.0f);
+
 		lastPosition = target.transform.position;
+		lastForward = target.transform.forward;
 		updateAnim = 0;
 	}
 	
@@ -258,9 +262,19 @@ public class ThirdPersonController_Student : MonoBehaviour
 	{
 		if(updateAnim == 0)
 		{
-		animator.SetFloat ("speed", (lastPosition - target.transform.position).magnitude/Time.deltaTime/5.0f);
-		//Debug.Log ("velocity = " + (lastPosition - target.transform.position).magnitude/Time.deltaTime/5.0f);
-		lastPosition = target.transform.position;
+			// Set linear speed
+			float linearSpeed = Mathf.Sign (Input.GetAxis ("Vertical"))*(lastPosition - target.transform.position).magnitude/Time.deltaTime/5.0f;
+			animator.SetFloat ("linear_speed", linearSpeed);
+
+			// Set angular speed
+			float angularSpeed = Mathf.Sign (Input.GetAxis ("Sidestep"))*Vector3.Angle(lastForward, target.transform.forward)/Time.deltaTime/5.0f;
+			animator.SetFloat("angular_speed", angularSpeed/30.0f);
+			Debug.Log ("linear_speed = " + animator.GetFloat("linear_speed"));
+			Debug.Log ("angular_speed = " + animator.GetFloat("angular_speed"));
+
+			// Update variables
+			lastPosition = target.transform.position;
+			lastForward = target.transform.forward;
 		}
 		updateAnim = (updateAnim + 1) % 5;
 	}
