@@ -163,7 +163,9 @@ public class ThirdPersonController_Student : MonoBehaviour
 		}
 	}
 	
-	
+
+	private Vector3 lastMotion = new Vector3(0,0,0);
+
 	void FixedUpdate ()
 	// Handle movement here since physics will only be calculated in fixed frames anyway
 	{
@@ -210,6 +212,7 @@ public class ThirdPersonController_Student : MonoBehaviour
 					SidestepAxisInput * target.transform.right;*/
 
 
+
 				float appliedSpeed = speed / walkSpeedDownscale;
 
 				if (gameObject.GetComponent<IsAttackedScript>().isSlowed)
@@ -240,7 +243,9 @@ public class ThirdPersonController_Student : MonoBehaviour
 				if (movement.magnitude > inputThreshold)
 				// Only apply movement if we have sufficient input
 				{
-					target.AddForce (movement.normalized * appliedSpeed, ForceMode.Impulse);
+					lastMotion = Vector3.Lerp (lastMotion, movement.normalized * appliedSpeed, 0.1f) ;
+
+					target.AddForce (lastMotion, ForceMode.Impulse);//movement.normalized * appliedSpeed, ForceMode.Impulse);
 				}
 				else
 				// If we are grounded and don't have significant input, just stop horizontal movement

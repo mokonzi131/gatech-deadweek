@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/*
+Created by Team "GT Dead Week"
+	Chenglong Jiang
+	Arnaud Golinvaux	
+	Michael Landes
+	Josephine Simon
+	Chuan Yao
+*/
+
+using UnityEngine;
 using System.Collections;
 
 public class VictoryScript : MonoBehaviour {
@@ -29,6 +38,8 @@ public class VictoryScript : MonoBehaviour {
 			victory = GameObject.FindWithTag("GameController").GetComponent<Inventory>().hasRetrieveTheBook;
 			if(victory){
 				GameObject.FindWithTag("Player").GetComponent<ThirdPersonCamera>().enabled = false;
+				GameObject.FindWithTag("Player").rigidbody.constraints = RigidbodyConstraints.FreezeAll ;
+				GameObject.FindWithTag("GameController").GetComponent<Timer>().stop() ;
 			} else {
 				UpdateWarningText("You need THE Book to win!");
 			}

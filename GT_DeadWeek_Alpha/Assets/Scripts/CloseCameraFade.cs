@@ -1,3 +1,12 @@
+/*
+Created by Team "GT Dead Week"
+	Chenglong Jiang
+	Arnaud Golinvaux	
+	Michael Landes
+	Josephine Simon
+	Chuan Yao
+*/
+
 using UnityEngine;
 using System.Collections;
 

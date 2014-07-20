@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/*
+Created by Team "GT Dead Week"
+	Chenglong Jiang
+	Arnaud Golinvaux	
+	Michael Landes
+	Josephine Simon
+	Chuan Yao
+*/
+
+using UnityEngine;
 using System.Collections;
 
 public class Timer : MonoBehaviour {
@@ -27,6 +36,7 @@ public class Timer : MonoBehaviour {
 			if(time <= 0){
 				loser = true;
 				GameObject.FindWithTag("Player").GetComponent<ThirdPersonCamera>().enabled = false;
+				GameObject.FindWithTag("Player").rigidbody.constraints = RigidbodyConstraints.FreezeAll ;
 			}
 		}
 	}
@@ -48,15 +58,15 @@ public class Timer : MonoBehaviour {
 		
 	}
 
-	void stop(){
+	public void stop(){
 		isPaused = true;
 	}
 
-	void start(){
+	public void start(){
 		isPaused = false;
 	}
 
-	void tooglePause(){
+	public void tooglePause(){
 		isPaused = !isPaused;
 	}
 }
