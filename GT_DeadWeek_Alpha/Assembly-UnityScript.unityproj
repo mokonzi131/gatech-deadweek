@@ -47,7 +47,12 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\lowpolyblocks\scripts\FPSWalker.js" />
+     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
+      <Project>{CF8216EA-8F0F-8106-35F1-C293B7F6A4E6}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

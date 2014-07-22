@@ -162,8 +162,15 @@ public class InventoryDisplay {
 	private GameObject background = new GameObject();
 	GameObject nbBooks = new GameObject ();
 	GameObject nbDrinks = new GameObject ();
+	GameObject bookIcon = new GameObject ();
+	GameObject drinkIcon = new GameObject ();
+	private int h_;
+	private int w_;
 
 	public InventoryDisplay(int h, int w, Texture2D booksIcon, Texture2D canIcon) {
+		h_ = h;
+		w_ = w;
+
 		background.AddComponent ("GUITexture");
 		background.transform.position = new Vector3(0,0,-0.5f);
 		background.transform.localScale = Vector3.zero;
@@ -172,7 +179,6 @@ public class InventoryDisplay {
 		background.guiTexture.pixelInset = 
 			new Rect (Screen.width - 80 - w, Screen.height * 0.1f - 40,w,h);
 
-		GameObject drinkIcon = new GameObject ();
 		drinkIcon.AddComponent ("GUITexture");
 		drinkIcon.transform.parent = background.transform;
 		drinkIcon.transform.position = new Vector3 (0,0,1);
@@ -181,7 +187,6 @@ public class InventoryDisplay {
 		drinkIcon.guiTexture.pixelInset = 
 			new Rect (Screen.width - 80 - w + 5, Screen.height * 0.1f - 40 + 3,(h-10)/2,(h-10)/2);
 
-		GameObject bookIcon = new GameObject ();
 		bookIcon.AddComponent ("GUITexture");
 		bookIcon.transform.parent = background.transform;
 		bookIcon.transform.position = new Vector3 (0,0,1);
@@ -207,6 +212,23 @@ public class InventoryDisplay {
 		nbDrinks.guiText.anchor = TextAnchor.MiddleLeft;
 		nbDrinks.guiText.pixelOffset =
 			new Vector2 (Screen.width - 80 - w + (h-10)/2 + (w - (h-10)/2)/3, Screen.height * 0.1f - 40 + 7 + (h-10)/2 - h/4);
+	}
+
+	public void display(){
+		background.guiTexture.pixelInset = 
+			new Rect (Screen.width - 80 - w_, Screen.height * 0.1f - 40,w_,h_);
+
+		drinkIcon.guiTexture.pixelInset = 
+			new Rect (Screen.width - 80 - w_ + 5, Screen.height * 0.1f - 40 + 3,(h_-10)/2,(h_-10)/2);
+
+		bookIcon.guiTexture.pixelInset = 
+			new Rect (Screen.width - 80 - w_ + 5, Screen.height * 0.1f - 40 + 7 + (h_-10)/2,(h_-10)/2,(h_-10)/2);
+
+		nbBooks.guiText.pixelOffset =
+			new Vector2 (Screen.width - 80 - w_ + (h_-10)/2 + (w_ - (h_-10)/2)/3, Screen.height * 0.1f - 40 + 7 + (h_-10)/2 + h_/4);
+
+		nbDrinks.guiText.pixelOffset =
+			new Vector2 (Screen.width - 80 - w_ + (h_-10)/2 + (w_ - (h_-10)/2)/3, Screen.height * 0.1f - 40 + 7 + (h_-10)/2 - h_/4);
 	}
 
 	public void setBooksNumber(int number) {
@@ -292,6 +314,7 @@ public class HeadUpDisplay : MonoBehaviour {
 
 		energy.display();
 		inventory.display ();
+		inventoryContent.display ();
 		timer.display ();
 	}
 }
