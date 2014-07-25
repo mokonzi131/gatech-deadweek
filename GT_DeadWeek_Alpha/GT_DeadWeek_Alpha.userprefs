@@ -1,8 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HeadUpDisplay.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\Unity\GT_DeadWeek_Alpha\Assets\Scripts\IsAttackedScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/HeadUpDisplay.cs" Line="317" Column="31" />
+      <File FileName="..\..\..\Unity\GT_DeadWeek_Alpha\Assets\PlayerCamera.cs" Line="271" Column="2" />
+      <File FileName="..\..\..\Unity\GT_DeadWeek_Alpha\Assets\CharacterPusher.cs" Line="19" Column="3" />
+      <File FileName="..\..\..\Unity\GT_DeadWeek_Alpha\Assets\Scripts\IsAttackedScript.cs" Line="44" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

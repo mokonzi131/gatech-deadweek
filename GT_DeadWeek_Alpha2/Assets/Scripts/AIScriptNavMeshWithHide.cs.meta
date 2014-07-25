@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: ba5e667c266a5634c86d432aa940ee84
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - throwable: {fileID: 100000, guid: 545f4bf45934548018cb7a5d49e527cc, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

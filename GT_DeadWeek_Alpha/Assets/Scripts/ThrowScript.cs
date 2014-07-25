@@ -74,15 +74,10 @@ public class ThrowScript : MonoBehaviour {
 				
 				if (Vector3.Angle(localDirection, transform.forward )<= 90)
 				{
-					
-					//GameObject t1 = Instantiate(throwable, startPoint, Quaternion.identity) as GameObject;
-					//t1.gameObject.GetComponent<AxePropertyScript>().isPlayerAxe = true;
-//					t1.gameObject.GetComponent<BookPropertyScript>().BeingThrowed();
-//					t1.transform.LookAt(hit.point);
-//					t1.rigidbody.velocity = worldVelocity;
 
 					if (inventory.remove(Inventory.ItemCategory.BOOK))
 					{
+						Debug.Log("Throw!");
 						GameObject book = Instantiate(throwable, startPoint, Quaternion.identity) as GameObject;
 						book.gameObject.GetComponent<BookPropertyScript>().BeingThrowed();
 						book.transform.LookAt(hit.point);
@@ -119,7 +114,4 @@ public class ThrowScript : MonoBehaviour {
 		return new Vector3(0,Mathf.Sin(angle)*speed,Mathf.Cos(angle)*speed);
 		
 	}
-	
-	
-	
 }
