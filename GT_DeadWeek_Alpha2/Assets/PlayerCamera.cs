@@ -209,6 +209,7 @@ public class PlayerCamera : MonoBehaviour {
 		Debug.DrawRay (cPos, camDir);
 		if(Physics.Raycast(cPos, camDir, out hit, targetDistance + 0.2f, hitLayer))
 		{
+			//Debug.Log(hit.collider.gameObject.name);
 			float t = hit.distance - 0.1f;
 			t -= minDistance;
 			t /= (targetDistance - minDistance);

@@ -81,6 +81,13 @@ public class PlayerController : MonoBehaviour {
 	private bool _useIK;
 
 
+	
+	public Animator animator;
+	private Vector3 lastPosition;
+	private Vector3 lastForward;
+	private int updateAnim;
+
+
 	void Awake()
 	{
 		if (enemiesRef != null) enemiesReference = enemiesRef;
@@ -149,7 +156,10 @@ public class PlayerController : MonoBehaviour {
 				motor.canControl = true;
 
 			if (!dead)
-				moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+			{
+				//moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+				moveDir = new Vector3(0, 0, Input.GetAxis("Vertical"));
+			}
 			else
 			{
 				moveDir = Vector3.zero;
@@ -167,6 +177,7 @@ public class PlayerController : MonoBehaviour {
 		
 		motor.movement.maxForwardSpeed = ((walk) ? ((crouch) ? crouchWalkSpeed : walkSpeed) : ((crouch) ? crouchRunSpeed : runSpeed));
 		motor.movement.maxBackwardsSpeed = motor.movement.maxForwardSpeed;
+		//Debug.Log (motor.movement.maxForwardSpeed.ToString () + " " + motor.movement.maxBackwardsSpeed.ToString () + " " + controller.velocity.magnitude.ToString());
 		motor.movement.maxSidewaysSpeed = ((walk) ? ((crouch) ? crouchWalkStrafeSpeed : walkStrafeSpeed) : ((crouch) ? crouchRunStrafeSpeed : runStrafeSpeed));
 
 		
@@ -189,6 +200,30 @@ public class PlayerController : MonoBehaviour {
 		playerTransform.localRotation = tmpQuaterion;
 
 	}
+
+
+	void LateUpdate()
+	{
+		if(updateAnim == 0)
+		{
+			// Set linear speed
+			float linearSpeed = Mathf.Sign (Input.GetAxis ("Vertical"))*(lastPosition - transform.position).magnitude/Time.deltaTime/5.0f;
+			animator.SetFloat ("linear_speed", linearSpeed);
+			
+			// Set angular speed
+			float angularSpeed = Mathf.Sign (Input.GetAxis ("Sidestep"))*Vector3.Angle(lastForward, transform.forward)/Time.deltaTime/5.0f;
+			animator.SetFloat("angular_speed", angularSpeed/30.0f);
+			//Debug.Log ("linear_speed = " + animator.GetFloat("linear_speed"));
+			//Debug.Log ("angular_speed = " + animator.GetFloat("angular_speed"));
+			
+			// Update variables
+			lastPosition = transform.position;
+			lastForward = transform.forward;
+		}
+		updateAnim = (updateAnim + 1) % 5;
+	}
+
+
 
 	void GetUserInputs()
 	{
@@ -213,17 +248,17 @@ public class PlayerController : MonoBehaviour {
 		
 		firing = (firingTimer <= 0.0f && fire);
 
-		//Check if the user wants the soldier to crouch
-		if(Input.GetKeyDown(KeyCode.LeftControl))
-		{
-			crouch = !crouch;
-			idleTimer = 0.0f;
-		}
+//		//Check if the user wants the soldier to crouch
+//		if(Input.GetKeyDown(KeyCode.LeftControl))
+//		{
+//			crouch = !crouch;
+//			idleTimer = 0.0f;
+//		}
 		
 		crouch |= dead;
 		
 		//Check if the user wants the soldier to walk
-		walk = (!Input.GetButton("Run") && !dead) || moveDir == Vector3.zero || crouch;
+		walk = (!Input.GetButton("Run") && !dead || moveDir == Vector3.zero || crouch || moveDir.z<=0);
 
 	}
 

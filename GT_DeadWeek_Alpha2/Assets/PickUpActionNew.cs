@@ -82,7 +82,6 @@ public class PickUpActionNew : MonoBehaviour {
 				if (targetObject.tag == "Drink")
 					mass /= 10 ;
 				if(targetObject.tag != "TheBook" && inventory.addItem(c, new Item(mass, targetObject.name))){
-					Debug.Log("Pick Up!");
 					UpdateWarningText("Pick Up!");
 					if(targetObject.tag != "Drink")
 						Destroy(targetObject);
@@ -92,14 +91,12 @@ public class PickUpActionNew : MonoBehaviour {
 					UpdateWarningText("You found THE Book!");
 					Destroy(targetObject);
 				} else {
-					Debug.Log("There is no more room for this in your backpack!");
 					UpdateWarningText("There is no more room for this in your backpack!");
 				}
 				
 			}
 			else
 			{
-				Debug.Log("Wrong Direction!");
 				UpdateWarningText("Wrong Direction!");
 			}
 			

@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{F7241441-DD5F-69C4-E836-BE9877A9F878}</ProjectGuid>
+	<ProjectGuid>{1D55B34E-092A-2730-8376-3BDE46B92143}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -52,6 +52,7 @@
      <Compile Include="Assets\PickUpActionNew.cs" />
      <Compile Include="Assets\PlayerCamera.cs" />
      <Compile Include="Assets\PlayerController.cs" />
+     <Compile Include="Assets\PlayerDamageControl.cs" />
      <Compile Include="Assets\PlayerTarget.cs" />
      <Compile Include="Assets\Scripts\AIScript1.cs" />
      <Compile Include="Assets\Scripts\AIScript2.cs" />
@@ -92,7 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
-      <Project>{CF8216EA-8F0F-8106-35F1-C293B7F6A4E6}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
+      <Project>{115C87FC-60CF-24F8-8661-CFADB3717401}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

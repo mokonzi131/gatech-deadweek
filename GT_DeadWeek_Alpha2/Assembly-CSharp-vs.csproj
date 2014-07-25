@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{F7241441-DD5F-69C4-E836-BE9877A9F878}</ProjectGuid>
+	<ProjectGuid>{1D55B34E-092A-2730-8376-3BDE46B92143}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -52,6 +52,7 @@
      <Compile Include="Assets\PickUpActionNew.cs" />
      <Compile Include="Assets\PlayerCamera.cs" />
      <Compile Include="Assets\PlayerController.cs" />
+     <Compile Include="Assets\PlayerDamageControl.cs" />
      <Compile Include="Assets\PlayerTarget.cs" />
      <Compile Include="Assets\Scripts\AIScript1.cs" />
      <Compile Include="Assets\Scripts\AIScript2.cs" />
