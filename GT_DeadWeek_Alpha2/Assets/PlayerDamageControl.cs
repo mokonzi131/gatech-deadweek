@@ -31,7 +31,7 @@ public class PlayerDamageControl : MonoBehaviour {
 	{
 		if(receiveDamage)
 		{
-			life -= 0.05f;
+			life -= 0.2f;
 			
 			if(!audio.isPlaying)
 			{
@@ -81,15 +81,14 @@ public class PlayerDamageControl : MonoBehaviour {
 		
 		if(blackAlpha >= 1.0f)
 		{
-			Application.LoadLevel(1);
+			Application.LoadLevel(0);
 		}
 	}
 	
 	void OnGUI()
 	{
-		if(!receiveDamage) return;
+		//if(!receiveDamage) return;
 
-		Debug.Log ("OnGUI");
 		Color oldColor;
 		Color auxColor;
 		oldColor = auxColor = GUI.color;
@@ -103,13 +102,14 @@ public class PlayerDamageControl : MonoBehaviour {
 		GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), blackTexture);
 		
 		GUI.color = oldColor;
+
 	}	
 
 
 	public void isRangeAttacked()
 	{
 		receiveDamage = true;
-		Debug.Log ("Is Attacked");
+		HitSoldier ("asd");
 	}
 
 	
@@ -118,8 +118,6 @@ public class PlayerDamageControl : MonoBehaviour {
 		if (other.gameObject.tag == "Axe")
 			isRangeAttacked();
 	}
-
-
 
 
 
