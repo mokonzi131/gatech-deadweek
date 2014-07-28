@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour {
 	{
 		if(!pause && running) time += Time.deltaTime;
 		
-		if(Input.GetKeyDown(KeyCode.Escape))
+		if(Input.GetButtonDown("Pause"))
 		{
 			pause = !pause;
 			

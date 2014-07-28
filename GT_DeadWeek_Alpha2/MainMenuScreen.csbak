@@ -8,6 +8,8 @@ public class MainMenuScreen : MonoBehaviour {
 	enum MainMenuState
 	{
 		IDLE,
+		OPTIONS,
+		GRAPHICS,
 		ABOUT
 	};
 
@@ -16,7 +18,10 @@ public class MainMenuScreen : MonoBehaviour {
 	
 	public Texture2D windowBackground;
 	private Rect windowBackgroundRect;
-
+	
+	public Texture2D playGame;
+	public Texture2D playGameOver;
+	private Rect playGameRect;
 	
 	public Texture2D resume;
 	public Texture2D resumeOver;
@@ -30,6 +35,13 @@ public class MainMenuScreen : MonoBehaviour {
 	public Texture2D restartOver;
 	private Rect restartRect;
 
+	public Texture2D options;
+	public Texture2D optionsOver;
+	private Rect optionsRect;
+	
+	public Texture2D graphics;
+	public Texture2D graphicsOver;
+	private Rect graphicsRect;
 	
 	public Texture2D about;
 	public Texture2D aboutOver;
@@ -54,7 +66,13 @@ public class MainMenuScreen : MonoBehaviour {
 	
 	private MainMenuState state;
 	private float lastMouseTime;
-
+	
+	public Texture2D receiveDamageOn;
+	public Texture2D receiveDamageOff;
+	public Texture2D dontReceiveDamageOn;
+	public Texture2D dontReceiveDamageOff;
+	private Rect damageRect;
+	
 	private Rect scrollPosition;
 	private Rect scrollView;
 	private Vector2 scroll;
@@ -134,11 +152,15 @@ public class MainMenuScreen : MonoBehaviour {
 		windowBackgroundRect = new Rect(0, 0, windowBackground.width, windowBackground.height);
 		panelLeftRect = new Rect(0, 0, 235, 240);
 		panelRightRect = new Rect(0, 0, 235, 240);
+		playGameRect = new Rect(0, 0, playGame.width * 0.75f, playGame.height * 0.75f);
+		optionsRect = new Rect(0, 0, options.width * 0.75f, options.height * 0.75f);
+		graphicsRect = new Rect(0, 0, graphics.width * 0.75f, graphics.height * 0.75f);
 		aboutRect = new Rect(0, 0, about.width * 0.75f, about.height * 0.75f);
 		resumeRect = new Rect(0, 0, resume.width * 0.75f, resume.height * 0.75f);
+		damageRect = new Rect(0, 0, receiveDamageOn.width * 0.7f, receiveDamageOn.height * 0.7f);
 
-		checkpointRect = new Rect (0, 0, checkpoint.width * 0.75f, checkpoint.height * 0.75f);
-		restartRect = new Rect (0, 0, restart.width * 0.75f, restart.height * 0.75f);
+		checkpointRect = new Rect (0, 0, checkpoint.width, checkpoint.height);
+		restartRect = new Rect (0, 0, restart.width, restart.height);
 
 	}
 	
@@ -196,7 +218,7 @@ public class MainMenuScreen : MonoBehaviour {
 				
 				GUI.DrawTexture(windowBackgroundRect, windowBackground);
 				
-				if(state == MainMenuState.ABOUT)
+				if(state == MainMenuState.GRAPHICS || state == MainMenuState.ABOUT)
 				{
 					panelLeftRect.width = 475;
 					panelLeftRect.x = windowBackgroundRect.x + 15;
@@ -205,8 +227,16 @@ public class MainMenuScreen : MonoBehaviour {
 					GUI.Box(panelLeftRect, "", panelLeft);
 				}
 			}
-
-			if(state == MainMenuState.ABOUT)
+			
+			if(state == MainMenuState.OPTIONS)
+			{
+				//DrawGameOptions();
+			}
+			else if(state == MainMenuState.GRAPHICS)
+			{
+				//DrawGraphicOptions();
+			}
+			else if(state == MainMenuState.ABOUT)
 			{
 				DrawAbout();
 			}
@@ -323,19 +353,38 @@ public class MainMenuScreen : MonoBehaviour {
 	{
 		menuBackgroundRect.x = 0;
 		menuBackgroundRect.y = (screenSize.y - menuBackgroundRect.height) * 0.5f - 50;
-
-		resumeRect.x = menuBackgroundRect.x + 110;
-		resumeRect.y = menuBackgroundRect.y + 65;
-
-		checkpointRect.x = resumeRect.x;
-		checkpointRect.y = resumeRect.y + resumeRect.height + 25;
-
-		restartRect.x = checkpointRect.x;
-		restartRect.y = checkpointRect.y + checkpointRect.height + 25;
-
-		aboutRect.x = restartRect.x;
-		aboutRect.y = restartRect.y + restartRect.height + 25;
-
+		
+		playGameRect.x = menuBackgroundRect.x + 110;
+		
+		if(hideOptions)
+		{
+			playGameRect.y = menuBackgroundRect.y + 65;
+		}
+		else
+		{
+			playGameRect.y = menuBackgroundRect.y + 42;
+		}
+		
+		resumeRect.x = playGameRect.x;
+		resumeRect.y = playGameRect.y;
+		
+		optionsRect.x = playGameRect.x;
+		optionsRect.y = playGameRect.y + playGameRect.height + 15;
+		
+		graphicsRect.x = playGameRect.x;
+		
+		if(hideOptions)
+		{
+			graphicsRect.y = playGameRect.y + playGameRect.height + 15;
+		}
+		else
+		{
+			graphicsRect.y = optionsRect.y + optionsRect.height + 15;
+		}
+		
+		aboutRect.x = playGameRect.x;
+		aboutRect.y = graphicsRect.y + graphicsRect.height + 15;
+		
 		GUI.DrawTexture(menuBackgroundRect, menuBackground);
 		
 		var overButton = false;
@@ -372,8 +421,49 @@ public class MainMenuScreen : MonoBehaviour {
 		{
 			GUI.DrawTexture(resumeRect, resume);
 		}
-
-		if(checkpointRect.Contains(mousePos))
+		
+		if(!hideOptions)
+		{
+			if(optionsRect.Contains(mousePos))
+			{
+				overButton = true;
+				
+				if(!over)
+				{
+					over = true;
+					audio.volume = overVolume;
+					audio.PlayOneShot(overSound);
+				}
+				
+				GUI.DrawTexture(optionsRect, optionsOver);
+				
+				if(alpha <= 0.0 && !goingToGame)
+				{
+					if(evt.type == EventType.MouseUp && evt.button == 0 && Time.time > lastMouseTime)
+					{
+						audio.volume = clickVolume;
+						audio.PlayOneShot(clickSound);
+						
+						if(state != MainMenuState.OPTIONS)
+						{
+							state = MainMenuState.OPTIONS;
+						}
+						else
+						{
+							state = MainMenuState.IDLE;
+						}
+						
+						lastMouseTime = Time.time;
+					}
+				}
+			}
+			else
+			{
+				GUI.DrawTexture(optionsRect, options);
+			}
+		}
+		
+		if(graphicsRect.Contains(mousePos))
 		{
 			overButton = true;
 			
@@ -384,62 +474,33 @@ public class MainMenuScreen : MonoBehaviour {
 				audio.PlayOneShot(overSound);
 			}
 			
-			GUI.DrawTexture(checkpointRect, checkpointOver);
+			GUI.DrawTexture(graphicsRect, graphicsOver);
 			
-			if(alpha <= 0.0 && GameManager.pause)
+			if(alpha <= 0.0f && !goingToGame)
 			{
 				if(evt.type == EventType.MouseUp && evt.button == 0 && Time.time > lastMouseTime)
 				{
 					audio.volume = clickVolume;
 					audio.PlayOneShot(clickSound);
 					
-					GameManager.pause = false;
-					Time.timeScale = 1.0f;
-					//Time.timeScale = 1.0;
-					visible = false;
+					if(state != MainMenuState.GRAPHICS)
+					{
+						state = MainMenuState.GRAPHICS;
+					}
+					else
+					{
+						state = MainMenuState.IDLE;
+					}
+					
 					lastMouseTime = Time.time;
 				}
 			}
 		}
 		else
 		{
-			GUI.DrawTexture(checkpointRect, checkpoint);
+			GUI.DrawTexture(graphicsRect, graphics);
 		}
-
-		if(restartRect.Contains(mousePos))
-		{
-			overButton = true;
-			
-			if(!over)
-			{
-				over = true;
-				audio.volume = overVolume;
-				audio.PlayOneShot(overSound);
-			}
-			
-			GUI.DrawTexture(restartRect, restartOver);
-			
-			if(alpha <= 0.0 && GameManager.pause)
-			{
-				if(evt.type == EventType.MouseUp && evt.button == 0 && Time.time > lastMouseTime)
-				{
-					audio.volume = clickVolume;
-					audio.PlayOneShot(clickSound);
-					
-					GameManager.pause = false;
-					Time.timeScale = 1.0f;
-					//Time.timeScale = 1.0;
-
-					Application.LoadLevel(0);
-				}
-			}
-		}
-		else
-		{
-			GUI.DrawTexture(restartRect, restart);
-		}
-
-
+		
 		if(aboutRect.Contains(mousePos))
 		{
 			overButton = true;

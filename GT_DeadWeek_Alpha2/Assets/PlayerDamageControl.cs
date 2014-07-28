@@ -31,7 +31,10 @@ public class PlayerDamageControl : MonoBehaviour {
 	{
 		if(receiveDamage)
 		{
+
 			life -= 0.2f;
+
+			Camera.main.GetComponent<PlayerCamera>().StartShake();
 			
 			if(!audio.isPlaying)
 			{
