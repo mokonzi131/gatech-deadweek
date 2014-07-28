@@ -49,6 +49,9 @@
      <Compile Include="Assets\CharacterMotor.cs" />
      <Compile Include="Assets\CharacterPusher.cs" />
      <Compile Include="Assets\FootSteps.cs" />
+     <Compile Include="Assets\GameManager.cs" />
+     <Compile Include="Assets\MainMenuScreen.cs" />
+     <Compile Include="Assets\PerlinShake.cs" />
      <Compile Include="Assets\PickUpActionNew.cs" />
      <Compile Include="Assets\PlayerCamera.cs" />
      <Compile Include="Assets\PlayerController.cs" />
@@ -87,6 +90,7 @@
      <Compile Include="Assets\Scripts\ZombieScript2.cs" />
      <Compile Include="Assets\Scripts\blinking.cs" />
      <Compile Include="Assets\Scripts\rotation.cs" />
+     <Compile Include="Assets\Util_Noise.cs" />
      <Compile Include="Assets\lowpolyblocks\scripts\MouseLook.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />

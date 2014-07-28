@@ -182,7 +182,9 @@ public class ZombieScript1 : MonoBehaviour
 		//animation.CrossFade("Run");
 		stateText = "Melee Attack";
 		if (Vector3.Distance(_transform.position, player.position) < 1.0f)
+		{
 		    player.gameObject.GetComponent<PlayerController>().enemiesShootRef.gameObject.GetComponent<IsAttackedScript>().isMeleeAttacked();
+		}
 	}
 
 	void AttackWalkCloser()

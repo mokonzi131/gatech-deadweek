@@ -35,7 +35,8 @@ public class PlayerCamera : MonoBehaviour {
 
 	public LayerMask hitLayer;
 
-	private Vector3 cPos;
+	[HideInInspector]
+	public Vector3 cPos;
 
 	public Vector3 normalDirection;
 	public Vector3 aimDirection;
@@ -58,8 +59,12 @@ public class PlayerCamera : MonoBehaviour {
 	public float minDistance;
 	public float maxDistance;
 
-	private float targetDistance;
-	private Vector3 camDir;
+	[HideInInspector]
+	public float targetDistance;
+
+	[HideInInspector]
+	public Vector3 camDir;
+
 	private float targetHeight;
 
 	public float minShakeSpeed;
@@ -153,6 +158,7 @@ public class PlayerCamera : MonoBehaviour {
 		
 		RotateSoldier();
 		
+		if (!gameObject.GetComponent<PerlinShake>().isShaking)
 		CameraMovement();
 		
 		//DepthOfFieldControl();
@@ -232,10 +238,12 @@ public class PlayerCamera : MonoBehaviour {
 		
 		Vector3 lookPoint = cPos;
 		lookPoint += (target.right * Vector3.Dot(camDir * targetDistance, target.right));
-		
-		camTransform.position = cPos + (camDir * targetDistance);
-		camTransform.LookAt(lookPoint);
-		
+
+		if (!gameObject.GetComponent<PerlinShake>().isShaking)
+		{
+			camTransform.position = cPos + (camDir * targetDistance);
+			camTransform.LookAt(lookPoint);
+		}
 		target.position = cPos;
 		target.rotation = Quaternion.Euler(y, x, 0);
 	}
