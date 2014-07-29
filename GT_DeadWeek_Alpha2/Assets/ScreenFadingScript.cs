@@ -32,7 +32,7 @@ public class ScreenFadingScript : MonoBehaviour {
 	{
 		if (FadingToClear)
 		{
-			Debug.Log(Time.time.ToString() + " is fading clear!");
+			//Debug.Log(Time.time.ToString() + " is fading clear!");
 			FadeClear();
 
 			if (guiTexture.color.a <= 0.05f)
@@ -44,7 +44,7 @@ public class ScreenFadingScript : MonoBehaviour {
 		}
 		else if (FadingToBlack)
 		{
-			Debug.Log(Time.time.ToString() + " is fading black!");
+			//Debug.Log(Time.time.ToString() + " is fading black!");
 			FadeBlack();
 
 			if (guiTexture.color.a >= 0.95f)
@@ -55,7 +55,7 @@ public class ScreenFadingScript : MonoBehaviour {
 		}
 		else if (FadingToWhite)
 		{
-			Debug.Log(Time.time.ToString() + " is fading white!");
+			//Debug.Log(Time.time.ToString() + " is fading white!");
 			FadeWhite();
 			if (guiTexture.color.a >= 0.65f)
 			{

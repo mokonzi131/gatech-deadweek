@@ -59,6 +59,7 @@
      <Compile Include="Assets\PlayerController.cs" />
      <Compile Include="Assets\PlayerDamageControl.cs" />
      <Compile Include="Assets\PlayerTarget.cs" />
+     <Compile Include="Assets\RadarController.cs" />
      <Compile Include="Assets\ScreenFadingScript.cs" />
      <Compile Include="Assets\Scripts\AIScript1.cs" />
      <Compile Include="Assets\Scripts\AIScript2.cs" />
@@ -95,6 +96,7 @@
      <Compile Include="Assets\Scripts\rotation.cs" />
      <Compile Include="Assets\Util_Noise.cs" />
      <Compile Include="Assets\lowpolyblocks\scripts\MouseLook.cs" />
+     <None Include="Assets\Shaders\Alpha-Cancel.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
