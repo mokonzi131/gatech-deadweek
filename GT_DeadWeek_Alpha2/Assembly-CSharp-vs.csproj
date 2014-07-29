@@ -48,6 +48,8 @@
   <ItemGroup>
      <Compile Include="Assets\CharacterMotor.cs" />
      <Compile Include="Assets\CharacterPusher.cs" />
+     <Compile Include="Assets\CheckpointManagerScript.cs" />
+     <Compile Include="Assets\CheckpointScript.cs" />
      <Compile Include="Assets\FootSteps.cs" />
      <Compile Include="Assets\GameManager.cs" />
      <Compile Include="Assets\MainMenuScreen.cs" />

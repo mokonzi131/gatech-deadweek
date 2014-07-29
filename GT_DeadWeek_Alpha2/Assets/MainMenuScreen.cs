@@ -75,8 +75,6 @@ public class MainMenuScreen : MonoBehaviour {
 	private GUIStyle sliderButton;
 	
 	public Texture2D greenBar;
-	public Texture2D checkOn;
-	public Texture2D checkOff;
 	public Texture2D whiteMarker;
 	
 	private float margin  = 30;
@@ -395,9 +393,9 @@ public class MainMenuScreen : MonoBehaviour {
 					
 					GameManager.pause = false;
 					Time.timeScale = 1.0f;
-					//Time.timeScale = 1.0;
 					visible = false;
-					lastMouseTime = Time.time;
+
+					GameObject.Find("CheckpointManager").GetComponent<CheckpointManagerScript>().ResetToLastCheckpoint();
 				}
 			}
 		}

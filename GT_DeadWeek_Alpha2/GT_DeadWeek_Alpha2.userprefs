@@ -1,14 +1,17 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CharacterPusher.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CheckpointScript.cs">
     <Files>
-      <File FileName="Assets\PlayerCamera.cs" Line="164" Column="4" />
-      <File FileName="Assets\PerlinShake.cs" Line="52" Column="1" />
-      <File FileName="Assets\PlayerDamageControl.cs" Line="29" Column="2" />
-      <File FileName="Assets\MainMenuScreen.cs" Line="286" Column="81" />
-      <File FileName="Assets\GameManager.cs" Line="62" Column="28" />
-      <File FileName="Assets\PickUpActionNew.cs" Line="69" Column="4" />
-      <File FileName="Assets\CharacterPusher.cs" Line="17" Column="3" />
+      <File FileName="Assets\Scripts\ThrowScript.cs" Line="23" Column="2" />
+      <File FileName="Assets\CheckpointScript.cs" Line="37" Column="33" />
+      <File FileName="Assets\Scripts\VictoryScript.cs" Line="58" Column="28" />
+      <File FileName="Assets\Scripts\HeadUpDisplay.cs" Line="268" Column="32" />
+      <File FileName="Assets\CheckpointManagerScript.cs" Line="34" Column="3" />
+      <File FileName="Assets\Scripts\FadeInOut.cs" Line="82" Column="17" />
+      <File FileName="Assets\Scripts\Timer.cs" Line="57" Column="4" />
+      <File FileName="Assets\PlayerDamageControl.cs" Line="94" Column="3" />
+      <File FileName="Assets\Scripts\ZombieScript1.cs" Line="89" Column="3" />
+      <File FileName="Assets\MainMenuScreen.cs" Line="396" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
