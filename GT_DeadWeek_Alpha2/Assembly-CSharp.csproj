@@ -59,6 +59,7 @@
      <Compile Include="Assets\PlayerController.cs" />
      <Compile Include="Assets\PlayerDamageControl.cs" />
      <Compile Include="Assets\PlayerTarget.cs" />
+     <Compile Include="Assets\ScreenFadingScript.cs" />
      <Compile Include="Assets\Scripts\AIScript1.cs" />
      <Compile Include="Assets\Scripts\AIScript2.cs" />
      <Compile Include="Assets\Scripts\AIScriptHybridWithHide.cs" />

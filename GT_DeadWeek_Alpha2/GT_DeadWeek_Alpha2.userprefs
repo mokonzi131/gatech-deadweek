@@ -1,17 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CheckpointScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ScreenFadingScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\ThrowScript.cs" Line="23" Column="2" />
-      <File FileName="Assets\CheckpointScript.cs" Line="37" Column="33" />
-      <File FileName="Assets\Scripts\VictoryScript.cs" Line="58" Column="28" />
-      <File FileName="Assets\Scripts\HeadUpDisplay.cs" Line="268" Column="32" />
-      <File FileName="Assets\CheckpointManagerScript.cs" Line="34" Column="3" />
-      <File FileName="Assets\Scripts\FadeInOut.cs" Line="82" Column="17" />
-      <File FileName="Assets\Scripts\Timer.cs" Line="57" Column="4" />
-      <File FileName="Assets\PlayerDamageControl.cs" Line="94" Column="3" />
-      <File FileName="Assets\Scripts\ZombieScript1.cs" Line="89" Column="3" />
-      <File FileName="Assets\MainMenuScreen.cs" Line="396" Column="22" />
+      <File FileName="Assets\Scripts\FadeInOut.cs" Line="64" Column="31" />
+      <File FileName="Assets\ScreenFadingScript.cs" Line="87" Column="73" />
+      <File FileName="Assets\CheckpointManagerScript.cs" Line="21" Column="35" />
+      <File FileName="Assets\MainMenuScreen.cs" Line="400" Column="5" />
+      <File FileName="Assets\CheckpointScript.cs" Line="37" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
