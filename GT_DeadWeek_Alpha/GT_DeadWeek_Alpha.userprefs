@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HeadUpDisplay.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ThirdPersonController_Student.cs">
     <Files>
-      <File FileName="Assets/Scripts/HeadUpDisplay.cs" Line="317" Column="31" />
+      <File FileName="Assets\Scripts\ZombieScript1.cs" Line="127" Column="1" />
+      <File FileName="Assets\Scripts\ThirdPersonController_Student.cs" Line="151" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

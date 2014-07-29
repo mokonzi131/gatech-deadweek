@@ -121,6 +121,10 @@ public class ZombieScript1 : MonoBehaviour
 			isCorouting = true;
 			StartCoroutine(delEnum());
 		}
+		Transform enemyDot = this.transform.FindChild("EnemyMarker");
+		Vector3 enemyPos = transform.position;
+		enemyPos += Vector3.up * 10.0f;
+		enemyDot.transform.position = enemyPos;
 	}
 
 	void LateUpdate()

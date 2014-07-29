@@ -142,6 +142,15 @@ public class ThirdPersonController_Student : MonoBehaviour
 			GameObject.FindGameObjectWithTag("GameController").GetComponent<FadeInOut>().EndScene() ;
 		}
 
+		GameObject radarCam = GameObject.Find ("RadarCamera");
+
+		Transform selfDot = this.transform.FindChild("PlayerMarker");
+		Vector3 selfPos = transform.position;
+		selfPos += Vector3.up * 10.0f;
+		selfDot.transform.position = selfPos;
+		selfPos += Vector3.up * 5.0f;
+		radarCam.transform.position = selfPos;
+
 	}
 	
 	
