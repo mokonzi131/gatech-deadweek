@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class CheckpointManagerScript : MonoBehaviour {
-	
+
+	public MinimapArrowLookAt minimapArrowManager;
+
 	[HideInInspector]
 	public int lastCheckpointIndex;
 	
@@ -17,6 +19,8 @@ public class CheckpointManagerScript : MonoBehaviour {
 		
 		lastCheckpointIndex = 0;
 		lastCheckpointTime = GameObject.Find ("Timer").GetComponent<Timer> ().time;
+
+		SetMinimapArrow ();
 
 		fadingManager = GameObject.Find("ScreenFadingManager").GetComponent<ScreenFadingScript> ();
 
@@ -36,15 +40,26 @@ public class CheckpointManagerScript : MonoBehaviour {
 		}
 
 	}
-	
-	
+
 	
 	public void ResetToLastCheckpoint()
 	{
 		fadingManager.FadeToBlack ();
 		isReseting = true;
 	}
-	
+
+
+	public void UpdateCheckpoint(int index)
+	{
+		
+		lastCheckpointIndex = index;
+		lastCheckpointTime = GameObject.Find("Timer").GetComponent<Timer>().time;
+
+		SetMinimapArrow ();
+
+	}
+
+
 	void SetPlayerAndTimer()
 	{
 		
@@ -64,6 +79,27 @@ public class CheckpointManagerScript : MonoBehaviour {
 		
 	}
 	
-	
+
+	void SetMinimapArrow()
+	{
+		
+		GameObject[] cps = GameObject.FindGameObjectsWithTag("Checkpoint");
+		GameObject targetCP = null;
+		foreach (GameObject cp in cps)
+		{
+			if (cp.GetComponent<CheckpointScript>().index == lastCheckpointIndex + 1)
+			{
+				targetCP = cp;
+				break;
+			}
+		}
+
+		if (targetCP != null)
+			minimapArrowManager.target = targetCP.transform;
+		else
+			minimapArrowManager.target = null;
+
+	}
+
 
 }

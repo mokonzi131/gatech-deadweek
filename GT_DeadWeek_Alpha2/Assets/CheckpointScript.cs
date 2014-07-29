@@ -46,8 +46,10 @@ public class CheckpointScript : MonoBehaviour {
 
 				fadingManager.FadeToWhite();
 
-				checkpointManager.lastCheckpointIndex = index;
-				checkpointManager.lastCheckpointTime = GameObject.Find("Timer").GetComponent<Timer>().time;
+				checkpointManager.UpdateCheckpoint(index);
+
+//				checkpointManager.lastCheckpointIndex = index;
+//				checkpointManager.lastCheckpointTime = GameObject.Find("Timer").GetComponent<Timer>().time;
 			}
 		}
 		

@@ -53,6 +53,7 @@
      <Compile Include="Assets\FootSteps.cs" />
      <Compile Include="Assets\GameManager.cs" />
      <Compile Include="Assets\MainMenuScreen.cs" />
+     <Compile Include="Assets\MinimapArrowLookAt.cs" />
      <Compile Include="Assets\PerlinShake.cs" />
      <Compile Include="Assets\PickUpActionNew.cs" />
      <Compile Include="Assets\PlayerCamera.cs" />
