@@ -50,7 +50,7 @@ public class FootSteps : MonoBehaviour {
 				volume = 1.0f;
 				if(cc != null)
 				{
-					volume = Mathf.Clamp01(cc.velocity.magnitude * 0.1f);
+					volume = Mathf.Clamp01(cc.velocity.magnitude * 0.05f);
 				}
 				else
 				{

@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour {
 	static public bool scores;
 	static public float time;
 	static public bool running;
+
+	[HideInInspector]
+	public int countAttackingZombie;
 	
 	public MainMenuScreen menu;
 	
@@ -20,7 +23,8 @@ public class GameManager : MonoBehaviour {
 	void Start()
 	{
 		Screen.lockCursor = true;
-		
+
+		countAttackingZombie = 0;
 		running = false;
 		pause = false;
 		scores = false;

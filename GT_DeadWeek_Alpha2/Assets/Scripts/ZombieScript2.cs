@@ -19,6 +19,7 @@ public class ZombieScript2 : MonoBehaviour
 	Transform _transform;
 	Transform player;
 	Transform _eyes;
+	GameManager gameManager;
 	#endregion
 	#region movement variables
 	public float patrolSpeed = 2;
@@ -66,6 +67,9 @@ public class ZombieScript2 : MonoBehaviour
 	DelEnum delEnum;
 	bool del;
 	#endregion
+	AudioSource source;
+	public AudioClip groan;
+	public AudioClip groan2;
 	#endregion
 	
 	Vector3 playerOffset = new Vector3(0, 1.8f, 0);
@@ -73,7 +77,7 @@ public class ZombieScript2 : MonoBehaviour
 	
 	bool seenAround;
 	bool isHiding;
-	int layerMask = 1 << 8;
+	public LayerMask layerMask;
 	
 	Animator _animator;
 	private Vector3 lastPosition;
@@ -81,6 +85,7 @@ public class ZombieScript2 : MonoBehaviour
 
 	void Start()
 	{
+		gameManager = GameObject.FindWithTag ("GameController").GetComponent<GameManager> ();
 		_agent = GetComponent<NavMeshAgent> ();
 		_transform = GetComponent<Transform>();
 		_eyes = transform.Find ("Eyes");
@@ -109,6 +114,7 @@ public class ZombieScript2 : MonoBehaviour
 		LosePlayer ();
 		isHiding = false;
 		layerMask = ~layerMask;
+		source = GetComponent<AudioSource>();
 	}
 	
 	void Update()
@@ -137,6 +143,24 @@ public class ZombieScript2 : MonoBehaviour
 			lastPosition = transform.position;
 		}
 		updateAnim = (updateAnim + 1) % 5;
+		int rand = Random.Range(0,2);
+		playSounds (rand);
+	}
+	// Plays a zombie sound based on the input parameter
+	void playSounds(int indicator){
+		if(!source.isPlaying){
+			switch(indicator){
+			case 0: 
+				source.clip = groan;
+				Debug.Log("groans");
+				break;
+			case 1: 
+				source.clip = groan2;
+				Debug.Log("groans 2");
+				break;
+			}
+			source.Play();
+		}
 	}
 
 	#region movement functions
@@ -489,18 +513,32 @@ public class ZombieScript2 : MonoBehaviour
 		}
 	}
 
+	
 	void SeePlayer()
 	{
+		
+		if (!seenAround)
+		{
+			gameManager.countAttackingZombie ++;
+		}
+		
 		seenAround = true;
 		transform.Find ("EnemyMark").Find ("StaticMark").gameObject.SetActive (false);
 		transform.Find ("EnemyMark").Find ("DynamicMark").gameObject.SetActive (true);
-
+		
 	}
 	void LosePlayer()
 	{
+		if (seenAround)
+		{
+			gameManager.countAttackingZombie --;
+			if (gameManager.countAttackingZombie < 0)
+				gameManager.countAttackingZombie = 0;
+		}
 		seenAround = false;
 		transform.Find ("EnemyMark").Find ("StaticMark").gameObject.SetActive (true);
 		transform.Find ("EnemyMark").Find ("DynamicMark").gameObject.SetActive (false);
-
+		
 	}
+
 }
