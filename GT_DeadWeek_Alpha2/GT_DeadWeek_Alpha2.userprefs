@@ -1,13 +1,5 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ZombieScript1.cs">
-    <Files>
-      <File FileName="Assets/Scripts/Timer.cs" Line="38" Column="1" />
-      <File FileName="Assets/PlayerController.cs" Line="227" Column="23" />
-      <File FileName="Assets/CharacterMotor.cs" Line="461" Column="24" />
-      <File FileName="Assets/Scripts/ZombieScript1.cs" Line="148" Column="3" />
-=======
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Timer.cs">
     <Files>
       <File FileName="Assets\Scripts\HeadUpDisplay.cs" Line="284" Column="31" />
@@ -16,7 +8,6 @@
       <File FileName="Assets\CheckpointManagerScript.cs" Line="58" Column="22" />
       <File FileName="Assets\CheckpointScript.cs" Line="51" Column="5" />
       <File FileName="Assets\Scripts\Timer.cs" Line="62" Column="4" />
->>>>>>> FETCH_HEAD
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
