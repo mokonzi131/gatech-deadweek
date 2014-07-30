@@ -108,11 +108,17 @@ public class PlayerDamageControl : MonoBehaviour {
 
 	}	
 
+	public void isMeleeAttacked()
+	{
+		receiveDamage = true;
+		HitSoldier ("dfa");
+
+	}
 
 	public void isRangeAttacked()
 	{
 		receiveDamage = true;
-		HitSoldier ("asd");
+		HitSoldier ("dfa");
 	}
 
 	
