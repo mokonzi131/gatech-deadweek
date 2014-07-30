@@ -1,10 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\Unity\GT_DeadWeek_Alpha\Assets\Scripts\IsAttackedScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PlayerController.cs">
     <Files>
-      <File FileName="..\..\..\Unity\GT_DeadWeek_Alpha\Assets\PlayerCamera.cs" Line="271" Column="2" />
-      <File FileName="..\..\..\Unity\GT_DeadWeek_Alpha\Assets\CharacterPusher.cs" Line="19" Column="3" />
-      <File FileName="..\..\..\Unity\GT_DeadWeek_Alpha\Assets\Scripts\IsAttackedScript.cs" Line="44" Column="38" />
+      <File FileName="Assets/Scripts/ZombieScript1.cs" Line="262" Column="1" />
+      <File FileName="Assets/Scripts/ThirdPersonController_Student.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Stamina.cs" Line="29" Column="97" />
+      <File FileName="Assets/PlayerController.cs" Line="45" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

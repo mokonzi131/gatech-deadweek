@@ -221,6 +221,11 @@ public class PlayerController : MonoBehaviour {
 			lastForward = transform.forward;
 		}
 		updateAnim = (updateAnim + 1) % 5;
+
+		if(Input.GetButton ("Push"))
+		{
+			animator.SetTrigger("pushTrigger");
+		}
 	}
 
 

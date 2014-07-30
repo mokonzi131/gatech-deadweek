@@ -143,7 +143,6 @@ public class ZombieScript1 : MonoBehaviour
 //		Debug.Log ("linearSpeed = " + speed);
 	}
 	
-	
 	void Walk()
 	{
 		if (Vector3.Distance(_transform.position, waypoint[index].position) > range)
@@ -178,15 +177,17 @@ public class ZombieScript1 : MonoBehaviour
 	
 	void AttackMelee()
 	{
+		_animator.SetBool ("attack", false);
 		Move(player, runSpeed);
 		//animation.CrossFade("Run");
 		stateText = "Melee Attack";
-		if (Vector3.Distance(_transform.position, player.position) < 1.0f)
-		    player.gameObject.GetComponent<PlayerController>().enemiesShootRef.gameObject.GetComponent<IsAttackedScript>().isMeleeAttacked();
+		//if (Vector3.Distance(_transform.position, player.position) < 1.0f)
+		    //player.gameObject.GetComponent<PlayerController>().enemiesShootRef.gameObject.GetComponent<IsAttackedScript>().isMeleeAttacked();
 	}
 
 	void AttackWalkCloser()
 	{
+		_animator.SetBool ("attack", false);
 		Move (player, alertSpeed);
 		//animation.CrossFade ("Walk");
 		stateText = "Alert";
@@ -194,6 +195,7 @@ public class ZombieScript1 : MonoBehaviour
 
 	void AttractWalkCloser()
 	{
+		_animator.SetBool ("attack", false);
 		Vector3 relativeDist = _transform.position - attractPos.position;
 		relativeDist.y = 0;
 		if (relativeDist.magnitude > 1.0f)
@@ -211,6 +213,7 @@ public class ZombieScript1 : MonoBehaviour
 	
 	void AttractIdle()
 	{
+		_animator.SetBool ("attack", false);
 		Move (_transform, 0);
 		Vector3 aPos = attractPos.position;
 		aPos.y = _transform.position.y;
@@ -218,6 +221,13 @@ public class ZombieScript1 : MonoBehaviour
 		//animation.CrossFade ("Idle");
 		stateText = "Attract Idle";
 		//_animator.SetFloat ("linearSpeed", 0.0f);
+	}
+
+	void CloseAttack()
+	{
+		// injuries
+		player.gameObject.GetComponent<PlayerController>().enemiesShootRef.gameObject.GetComponent<IsAttackedScript>().isMeleeAttacked();
+		_animator.SetBool ("attack", true);
 	}
 	
 
@@ -265,10 +275,19 @@ public class ZombieScript1 : MonoBehaviour
 		{
 			if (seenAround || !isBlocked)
 			{
-				delFunc = this.AttackMelee;
-				del = true;
-				seenAround = true;
-				return true;
+				if(dist > 1.2)
+				{
+					delFunc = this.AttackMelee;
+					del = true;
+					seenAround = true;
+					return true;
+				}
+				else
+				{
+					delFunc = this.CloseAttack;
+					del = true;
+					return true;
+				}
 			}
 			//Debug.Log ("Melee Attack!");
 			return false;
