@@ -1,11 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CheckpointScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Timer.cs">
     <Files>
+      <File FileName="Assets\Scripts\HeadUpDisplay.cs" Line="284" Column="31" />
       <File FileName="..\..\..\Unity\Bootcamp\Assets\Standard Assets\Camera Scripts\SmoothLookAt.js" Line="44" Column="2" />
       <File FileName="Assets\MinimapArrowLookAt.cs" Line="64" Column="9" />
       <File FileName="Assets\CheckpointManagerScript.cs" Line="58" Column="22" />
       <File FileName="Assets\CheckpointScript.cs" Line="51" Column="5" />
+      <File FileName="Assets\Scripts\Timer.cs" Line="62" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
