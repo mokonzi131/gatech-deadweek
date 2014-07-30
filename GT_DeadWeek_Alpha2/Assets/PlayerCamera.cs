@@ -33,9 +33,10 @@ public class PlayerCamera : MonoBehaviour {
 
 	public bool orbit;
 
-	public LayerMask hitLayer;
+	public LayerMask ignoreLayer;
 
-	private Vector3 cPos;
+	[HideInInspector]
+	public Vector3 cPos;
 
 	public Vector3 normalDirection;
 	public Vector3 aimDirection;
@@ -58,28 +59,22 @@ public class PlayerCamera : MonoBehaviour {
 	public float minDistance;
 	public float maxDistance;
 
-	private float targetDistance;
-	private Vector3 camDir;
+	[HideInInspector]
+	public float targetDistance;
+
+	[HideInInspector]
+	public Vector3 camDir;
+
 	private float targetHeight;
-
-	public float minShakeSpeed;
-	public float maxShakeSpeed;
-
-	public float minShake;
-	public float maxShake = 2.0f;
-
-	public int minShakeTimes;
-	public int maxShakeTimes;
-
-	public float maxShakeDistance;
-
+	
 	private bool shake;
-	private float shakeSpeed = 2.0f;
-	private float cShakePos;
-	private int shakeTimes = 8;
-	private float cShake;
-	private float cShakeSpeed;
-	private int cShakeTimes;
+	public float shakeDuration = 0.5f;
+	public float shakeSpeed = 4.0f;
+	public float shakeMagnitude = 0.3f;
+	private float shakeElapse = -10.0f;
+	private float shakeStart = -10.0f;
+	private float shakeRandomStart = 0.0f;
+
 
 	public Transform radar;
 	public Transform radarCamera;
@@ -90,10 +85,6 @@ public class PlayerCamera : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
-		cShakeTimes = 0;
-		cShake = 0.0f;
-		cShakeSpeed = shakeSpeed;
-
 		//_depthOfFieldEffect = gameObject.GetComponent<"DepthOfField">() as DepthOfField;
 
 		if (target == null || player == null)
@@ -118,6 +109,8 @@ public class PlayerCamera : MonoBehaviour {
 
 		cPos = player.position + new Vector3 (0, normalHeight, 0);
 
+		ignoreLayer = ~ignoreLayer;
+
 	}
 
 	void GoToOrbitMode(bool state)
@@ -129,7 +122,7 @@ public class PlayerCamera : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		//if (GameManager.pause || GameManager.scores) return;
+		if (GameManager.pause || GameManager.scores) return;
 
 		if(orbit && (Input.GetKeyDown(KeyCode.O) || Input.GetAxis("Horizontal") != 0.0 || Input.GetAxis("Vertical") != 0.0 || playerController.aim || playerController.fire))
 		{
@@ -140,19 +133,26 @@ public class PlayerCamera : MonoBehaviour {
 		{
 			GoToOrbitMode(true);
 		}
+
+//		
+//		if (Input.GetKeyDown(KeyCode.P))
+//		{
+//			StartShake();
+//		}
+
 	}
 
 
 	void LateUpdate ()
 	{
-		//if (GameManager.scores) return;
+		if (GameManager.scores) return;
 
 		deltaTime = Time.deltaTime;
 
 		GetInput();
 		
 		RotateSoldier();
-		
+
 		CameraMovement();
 		
 		//DepthOfFieldControl();
@@ -199,17 +199,14 @@ public class PlayerCamera : MonoBehaviour {
 		
 		camDir = camDir.normalized;
 		
-		HandleCameraShake();
+		Vector3 shakeOffest = HandleCameraShake();
 		
 		cPos = player.position + new Vector3(0, targetHeight, 0);
 
-		//cPos = player.position;
 
 		RaycastHit hit;
-		Debug.DrawRay (cPos, camDir);
-		if(Physics.Raycast(cPos, camDir, out hit, targetDistance + 0.2f, hitLayer))
+		if(Physics.Raycast(cPos, camDir, out hit, targetDistance + 0.2f, ignoreLayer))
 		{
-			//Debug.Log(hit.collider.gameObject.name);
 			float t = hit.distance - 0.1f;
 			t -= minDistance;
 			t /= (targetDistance - minDistance);
@@ -218,7 +215,7 @@ public class PlayerCamera : MonoBehaviour {
 			cPos = player.position + new Vector3(0, targetHeight, 0); 
 		}
 		
-		if(Physics.Raycast(cPos, camDir, out hit, targetDistance + 0.2f, hitLayer))
+		if(Physics.Raycast(cPos, camDir, out hit, targetDistance + 0.2f, ignoreLayer))
 		{
 			targetDistance = hit.distance - 0.1f;
 		}
@@ -232,61 +229,62 @@ public class PlayerCamera : MonoBehaviour {
 		
 		Vector3 lookPoint = cPos;
 		lookPoint += (target.right * Vector3.Dot(camDir * targetDistance, target.right));
-		
-		camTransform.position = cPos + (camDir * targetDistance);
+
+		camTransform.position = cPos + (camDir * targetDistance) + shakeOffest;
 		camTransform.LookAt(lookPoint);
-		
+
 		target.position = cPos;
 		target.rotation = Quaternion.Euler(y, x, 0);
 	}
-	
-	void HandleCameraShake()
+
+
+	private Vector3 HandleCameraShake()
 	{
-		if(shake)
+		if (!shake)
 		{
-			cShake += cShakeSpeed * deltaTime;
-			
-			if(Mathf.Abs(cShake) > cShakePos)
-			{
-				cShakeSpeed *= -1.0f;
-				cShakeTimes++;
-				
-				if(cShakeTimes >= shakeTimes)
-				{
-					shake = false;
-				}
-				
-				if(cShake > 0.0f)
-				{
-					cShake = maxShake;
-				}
-				else
-				{
-					cShake = -maxShake;
-				}
-			}
-			
-			targetHeight += cShake;
+			shakeElapse = 0;
+			return new Vector3 (0, 0, 0);
 		}
+
+		shakeElapse += Time.deltaTime;
+		if (shakeElapse > shakeDuration)
+			shake = false;
+
+		float percentComplete = shakeElapse / shakeDuration;			
+		
+		// We want to reduce the shake from full power to 0 starting half way through
+		float damper = 1.0f - Mathf.Clamp(2.0f * percentComplete - 1.0f, 0.0f, 1.0f);
+		
+		// Calculate the noise parameter starting randomly and going as fast as speed allows
+		float alpha = shakeRandomStart + shakeSpeed * percentComplete;
+		
+		// map noise to [-1, 1]
+		float x = Util.Noise.GetNoise(alpha, 0.0f, 0.0f) * 2.0f - 1.0f;
+		float y = Util.Noise.GetNoise(0.0f, alpha, 0.0f) * 2.0f - 1.0f;
+		float z = Util.Noise.GetNoise(0.0f, 0.0f, alpha) * 2.0f - 1.0f;
+		
+		x *= shakeMagnitude * damper;
+		y *= shakeMagnitude * damper;
+		z *= shakeMagnitude * damper;
+
+		return new Vector3 (x, y, z);
+
 	}
-	
-	public void StartShake(float distance)
+
+
+	public void StartShake()
 	{
-		float proximity = distance / maxShakeDistance;
-		
-		if(proximity > 1.0f) return;
-		
-		proximity = Mathf.Clamp(proximity, 0.0f, 1.0f);
-		
-		proximity = 1.0f - proximity;
-		
-		cShakeSpeed = Mathf.Lerp(minShakeSpeed, maxShakeSpeed, proximity);
-		shakeTimes = Mathf.RoundToInt( Mathf.Lerp(minShakeTimes, (float)maxShakeTimes, proximity));
-		cShakeTimes = 0;
-		cShakePos = Mathf.Lerp(minShake, maxShake, proximity);
-		
+		shakeStart = 0.0f;
+		shakeElapse = 0.0f;
+
+		if (shake == false)
+		{
+			shakeRandomStart = Random.Range(-1000.0f, 1000.0f);
+		}
+
 		shake = true;
 	}
+
 	
 	void GetInput()
 	{

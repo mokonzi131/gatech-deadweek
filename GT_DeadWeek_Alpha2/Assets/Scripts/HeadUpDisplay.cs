@@ -245,37 +245,6 @@ public class InventoryDisplay {
 	}
 }
 
-public class TimerDisplay {
-	private float time = 0;
-
-	private GameObject TimeDisplay_ = new GameObject();
-
-	public TimerDisplay() {
-		TimeDisplay_.AddComponent ("GUIText");
-		TimeDisplay_.guiText.alignment = TextAlignment.Center;
-		TimeDisplay_.guiText.anchor = TextAnchor.MiddleCenter;
-		TimeDisplay_.guiText.fontSize = 24;
-		TimeDisplay_.guiText.color = Color.red;
-		TimeDisplay_.transform.position = new Vector3 (0.5f, 0.9f, 1);
-	}
-
-	public void display() {
-		int minutes = (int)(time / 60);
-		int secondes = (int)(time - 60 * minutes);
-		int rest = (int)(100 * time - 6000 * minutes - 100 * secondes);
-		TimeDisplay_.guiText.text = minutes.ToString ("00") + ":" +
-									secondes.ToString ("00") + ":" +
-									rest.ToString ("00") ;
-	}
-
-	public void setTime(float t){
-		time = Mathf.Max (t, 0.0f) ;
-	}
-
-	public float getTime(){
-		return time ;
-	}
-}
 
 public class HeadUpDisplay : MonoBehaviour {
 	
@@ -290,7 +259,6 @@ public class HeadUpDisplay : MonoBehaviour {
 
 	public StaminaBar energy;
 	public InventoryBar inventory;
-	public TimerDisplay timer;
 	public InventoryDisplay inventoryContent;
 
 	private bool inventoryEnable = true ;
@@ -299,7 +267,6 @@ public class HeadUpDisplay : MonoBehaviour {
 	void Awake () {
 		energy = new StaminaBar (can,border);
 		inventory = new InventoryBar (backpack,border);
-		timer = new TimerDisplay ();
 		inventoryContent = new InventoryDisplay (inventoryHeight, inventoryWidth, booksIcon, canIcon);
 	}
 
@@ -315,6 +282,5 @@ public class HeadUpDisplay : MonoBehaviour {
 		energy.display();
 		inventory.display ();
 		inventoryContent.display ();
-		timer.display ();
 	}
 }

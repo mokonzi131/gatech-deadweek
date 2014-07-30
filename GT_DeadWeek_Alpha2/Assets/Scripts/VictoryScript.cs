@@ -39,7 +39,7 @@ public class VictoryScript : MonoBehaviour {
 			if(victory){
 				GameObject.FindWithTag("Player").GetComponent<ThirdPersonCamera>().enabled = false;
 				GameObject.FindWithTag("Player").rigidbody.constraints = RigidbodyConstraints.FreezeAll ;
-				GameObject.FindWithTag("GameController").GetComponent<Timer>().stop() ;
+				GameObject.Find("Timer").GetComponent<Timer>().stop() ;
 			} else {
 				UpdateWarningText("You need THE Book to win!");
 			}

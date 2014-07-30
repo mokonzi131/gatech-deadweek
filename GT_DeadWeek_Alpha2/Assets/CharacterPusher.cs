@@ -10,11 +10,16 @@ public class CharacterPusher : MonoBehaviour {
 		Rigidbody body = hit.collider.attachedRigidbody;
 		
 		if (body == null || body.isKinematic) return;
-		
+
+		//body.AddForce (hit.moveDirection * pushPower);
+		//body.velocity = hit.moveDirection * pushPower;
+
+		//Debug.Log (hit.moveDirection.ToString ());
+
 		if (hit.moveDirection.y < -0.9f) return;
 		
 		Vector3 pushDir = new Vector3 (hit.moveDirection.x, 0, hit.moveDirection.z);
-		
+
 		body.velocity = pushDir * pushPower;
 
 	}
