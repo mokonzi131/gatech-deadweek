@@ -106,7 +106,7 @@ public class ZombieScript2 : MonoBehaviour
 		stateText = "Walk";
 		
 		isCorouting = false;
-		seenAround = false;
+		LosePlayer ();
 		isHiding = false;
 		layerMask = ~layerMask;
 	}
@@ -361,7 +361,7 @@ public class ZombieScript2 : MonoBehaviour
 					if (isWithinSight && !isBlocked){
 						delFunc = this.AttackRange;
 						del = true;
-						seenAround = true;
+						SeePlayer();
 						return true;
 					}
 					return false;
@@ -386,7 +386,7 @@ public class ZombieScript2 : MonoBehaviour
 				else{
 					if (isWithinSight && !isBlocked){
 						delFunc = this.AttackWalkCloser;
-						seenAround = true;
+						SeePlayer();
 						del = true;
 						return true;
 					}
@@ -401,7 +401,7 @@ public class ZombieScript2 : MonoBehaviour
 		{
 			delFunc = this.Walk;
 		}
-		seenAround = false;
+		LosePlayer ();
 
 		return false;
 	}
@@ -487,5 +487,20 @@ public class ZombieScript2 : MonoBehaviour
 				
 			}
 		}
+	}
+
+	void SeePlayer()
+	{
+		seenAround = true;
+		transform.Find ("EnemyMark").Find ("StaticMark").gameObject.SetActive (false);
+		transform.Find ("EnemyMark").Find ("DynamicMark").gameObject.SetActive (true);
+
+	}
+	void LosePlayer()
+	{
+		seenAround = false;
+		transform.Find ("EnemyMark").Find ("StaticMark").gameObject.SetActive (true);
+		transform.Find ("EnemyMark").Find ("DynamicMark").gameObject.SetActive (false);
+
 	}
 }
