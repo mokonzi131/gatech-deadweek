@@ -66,6 +66,12 @@ public class ZombieScript2 : MonoBehaviour
 	DelEnum delEnum;
 	bool del;
 	#endregion
+
+	AudioSource source;
+	public AudioClip groan;
+	public AudioClip groan2;
+	public AudioClip attack;
+
 	#endregion
 	
 	Vector3 playerOffset = new Vector3(0, 1.8f, 0);
@@ -109,6 +115,7 @@ public class ZombieScript2 : MonoBehaviour
 		LosePlayer ();
 		isHiding = false;
 		layerMask = ~layerMask;
+		source = GetComponent<AudioSource>();
 	}
 	
 	void Update()
@@ -163,6 +170,25 @@ public class ZombieScript2 : MonoBehaviour
 			delEnum = this.Wait;
 
 		}
+	}
+
+	void playSounds(int indicator){
+		source.Stop();
+		switch(indicator){
+		case 0: 
+			source.clip = groan;
+			Debug.Log("groans");
+			break;
+		case 1: 
+			source.clip = groan2;
+			Debug.Log("groans 2");
+			break;
+		case 2:
+			source.clip = attack;
+			Debug.Log("attack");
+			break;
+		}
+		source.Play();
 	}
 	
 	
