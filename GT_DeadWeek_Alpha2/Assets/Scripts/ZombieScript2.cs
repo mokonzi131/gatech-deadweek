@@ -67,9 +67,7 @@ public class ZombieScript2 : MonoBehaviour
 	DelEnum delEnum;
 	bool del;
 	#endregion
-	AudioSource source;
 	public AudioClip groan;
-	public AudioClip groan2;
 	#endregion
 	
 	Vector3 playerOffset = new Vector3(0, 1.8f, 0);
@@ -143,23 +141,23 @@ public class ZombieScript2 : MonoBehaviour
 			lastPosition = transform.position;
 		}
 		updateAnim = (updateAnim + 1) % 5;
-		int rand = Random.Range(0,2);
-		playSounds (rand);
+
+		playSounds ();
+
 	}
 	// Plays a zombie sound based on the input parameter
-	void playSounds(int indicator){
-		if(!source.isPlaying){
-			switch(indicator){
-			case 0: 
-				source.clip = groan;
-				Debug.Log("groans");
-				break;
-			case 1: 
-				source.clip = groan2;
-				Debug.Log("groans 2");
-				break;
+	void playSounds(){
+		if (seenAround)
+		{
+			if (!audio.isPlaying)
+			{
+				audio.clip = groan;
+				audio.Play();
 			}
-			source.Play();
+		}
+		else
+		{
+			audio.clip = null;
 		}
 	}
 

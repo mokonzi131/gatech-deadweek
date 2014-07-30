@@ -1,0 +1,557 @@
+﻿using UnityEngine;
+using System.Collections;
+
+
+
+public class MainMenuScreen : MonoBehaviour {
+
+	enum MainMenuState
+	{
+		IDLE,
+		OPTIONS,
+		GRAPHICS,
+		ABOUT
+	};
+
+	public Texture2D menuBackground;
+	private Rect menuBackgroundRect;
+	
+	public Texture2D windowBackground;
+	private Rect windowBackgroundRect;
+	
+	public Texture2D playGame;
+	public Texture2D playGameOver;
+	private Rect playGameRect;
+	
+	public Texture2D resume;
+	public Texture2D resumeOver;
+	private Rect resumeRect;
+
+	public Texture2D checkpoint;
+	public Texture2D checkpointOver;
+	private Rect checkpointRect;
+	
+	public Texture2D restart;
+	public Texture2D restartOver;
+	private Rect restartRect;
+
+	public Texture2D options;
+	public Texture2D optionsOver;
+	private Rect optionsRect;
+	
+	public Texture2D graphics;
+	public Texture2D graphicsOver;
+	private Rect graphicsRect;
+	
+	public Texture2D about;
+	public Texture2D aboutOver;
+	private Rect aboutRect;
+	
+	public GUISkin hudSkin;
+	
+	private GUIStyle panelLeft;
+	private Rect panelLeftRect;
+	
+	private GUIStyle panelRight;
+	private Rect panelRightRect;
+	
+	private GUIStyle descriptionStyle;
+	private GUIStyle titleStyle;
+	private GUIStyle customBox;
+	
+	private Vector2 mousePos;
+	private Vector2 screenSize;
+	
+	private Event evt;
+	
+	private MainMenuState state;
+	private float lastMouseTime;
+	
+	public Texture2D receiveDamageOn;
+	public Texture2D receiveDamageOff;
+	public Texture2D dontReceiveDamageOn;
+	public Texture2D dontReceiveDamageOff;
+	private Rect damageRect;
+	
+	private Rect scrollPosition;
+	private Rect scrollView;
+	private Vector2 scroll;
+	
+	public Texture2D black;
+	private float alpha;
+	static public bool goingToGame;
+	static public bool showProgress;
+	
+	private Vector2 aboutScroll;
+	private Vector2 graphicsScroll;
+	private GUIStyle aboutStyle;
+	
+	private bool resumeGame;
+	public bool visible;
+	
+	private GUIStyle sliderBackground;
+	private GUIStyle sliderButton;
+	
+	public Texture2D greenBar;
+	public Texture2D checkOn;
+	public Texture2D checkOff;
+	public Texture2D whiteMarker;
+	
+	private float margin  = 30;
+	
+	private Rect questionRect;
+	private Rect greenRect;
+	private GUIStyle tooltipStyle;
+	private GUIStyle questionButtonStyle;
+	
+	private GUIStyle aquirisLogo;
+	private GUIStyle unityLogo;
+	
+	public AudioClip overSound;
+	public float overVolume = 0.4f;
+	
+	public AudioClip clickSound;
+	public float clickVolume = 0.7f;
+	
+	private bool over;
+	private bool hideOptions;
+	private bool loadingIndustry;
+	
+	public GUIStyle textStyle;
+	private float angle;
+	public Texture2D loadingBackground;
+	
+	void Start()
+	{
+		angle = 0.0f;
+		over = false;
+		loadingIndustry = false;
+		showProgress = false;
+		hideOptions = Application.loadedLevelName != "demo_industry";
+		
+		questionButtonStyle = hudSkin.GetStyle("QuestionButton");
+		tooltipStyle = hudSkin.GetStyle("TooltipStyle");
+		aquirisLogo = hudSkin.GetStyle("AquirisLogo");
+		unityLogo = hudSkin.GetStyle("UnityLogo");
+		questionRect = new Rect(0, 0, 11, 11);
+		
+		alpha = 1.0f;
+		goingToGame = false;
+		resumeGame = false;
+		
+		state = MainMenuState.IDLE;
+		
+		descriptionStyle = hudSkin.GetStyle("Description");
+		titleStyle = hudSkin.GetStyle("Titles");
+		customBox = hudSkin.GetStyle("CustomBox");
+		panelLeft = hudSkin.GetStyle("PanelLeft");
+		panelRight = hudSkin.GetStyle("PanelRight");
+		aboutStyle = hudSkin.GetStyle("About");
+		
+		menuBackgroundRect = new Rect(0, 0, menuBackground.width, menuBackground.height);
+		windowBackgroundRect = new Rect(0, 0, windowBackground.width, windowBackground.height);
+		panelLeftRect = new Rect(0, 0, 235, 240);
+		panelRightRect = new Rect(0, 0, 235, 240);
+		playGameRect = new Rect(0, 0, playGame.width * 0.75f, playGame.height * 0.75f);
+		optionsRect = new Rect(0, 0, options.width * 0.75f, options.height * 0.75f);
+		graphicsRect = new Rect(0, 0, graphics.width * 0.75f, graphics.height * 0.75f);
+		aboutRect = new Rect(0, 0, about.width * 0.75f, about.height * 0.75f);
+		resumeRect = new Rect(0, 0, resume.width * 0.75f, resume.height * 0.75f);
+		damageRect = new Rect(0, 0, receiveDamageOn.width * 0.7f, receiveDamageOn.height * 0.7f);
+
+		checkpointRect = new Rect (0, 0, checkpoint.width, checkpoint.height);
+		restartRect = new Rect (0, 0, restart.width, restart.height);
+
+	}
+	
+	void Update()
+	{
+		if(goingToGame)
+		{
+			alpha += Time.deltaTime;
+			
+			if(alpha >= 1.0f)
+			{
+				if(!loadingIndustry)
+				{
+					loadingIndustry = true;
+					Application.LoadLevelAsync("demo_industry");
+				}
+			}
+		}
+		else
+		{
+			if(alpha > 0)
+			{
+				alpha -= Time.deltaTime * 0.5f;
+			}
+		}
+		
+		if(Time.timeScale == 0.0f || GameManager.pause)
+		{
+			lastMouseTime -= 0.01f;
+		}
+		
+		if(showProgress)
+		{
+			angle -= Time.deltaTime * 360;
+			
+			if(angle < -360.0f)
+			{
+				angle += 360.0f;
+			}
+		}
+	}
+	
+	void DrawGUI(Event _event)
+	{
+		evt = _event;
+		screenSize = new Vector2(Screen.width, Screen.height);
+		mousePos = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
+		
+		if(visible)
+		{
+			if(state != MainMenuState.IDLE)
+			{
+				windowBackgroundRect.x = menuBackgroundRect.x + menuBackgroundRect.width;
+				windowBackgroundRect.y = (screenSize.y - windowBackgroundRect.height) * 0.5f;
+				
+				GUI.DrawTexture(windowBackgroundRect, windowBackground);
+				
+				if(state == MainMenuState.GRAPHICS || state == MainMenuState.ABOUT)
+				{
+					panelLeftRect.width = 475;
+					panelLeftRect.x = windowBackgroundRect.x + 15;
+					panelLeftRect.y = windowBackgroundRect.y + 55;
+					
+					GUI.Box(panelLeftRect, "", panelLeft);
+				}
+			}
+			
+			if(state == MainMenuState.OPTIONS)
+			{
+				//DrawGameOptions();
+			}
+			else if(state == MainMenuState.GRAPHICS)
+			{
+				//DrawGraphicOptions();
+			}
+			else if(state == MainMenuState.ABOUT)
+			{
+				DrawAbout();
+			}
+			
+			DrawMenu();
+		}
+
+		
+		if(alpha > 0.0f)
+		{
+			Color c = GUI.color;
+			Color d = c;
+			d.a = alpha;
+			GUI.color = d;
+			
+			GUI.DrawTexture(new Rect(0, 0, screenSize.x, screenSize.y), black);
+			
+			if(goingToGame)
+			{
+				GUI.Label(new Rect(Screen.width - 120, Screen.height - 40, 90, 20), "Loading...", textStyle);
+			}
+			GUI.color = c;
+		}
+	}
+
+	
+	private void DrawSliderOverlay (Rect rect, float val)
+	{
+		rect.width = Mathf.Clamp(val * 199.0f, 0.0f, 199.0f);
+		GUI.DrawTexture (rect, greenBar);
+	}
+
+	private void BeginToggleRow ()
+	{
+		GUILayout.BeginHorizontal();
+		GUILayout.Space(margin);
+		GUILayout.BeginVertical();
+		GUILayout.BeginHorizontal(GUILayout.Width(400));
+		questionRect.y += 21;
+	}
+	
+	private void EndToggleRow (int pix)
+	{
+		GUILayout.Space (pix);		
+		GUILayout.EndHorizontal();
+		GUILayout.EndVertical();
+		GUILayout.EndHorizontal();
+	}
+
+	
+	void DrawMarker(float y, int steps)
+	{
+		Rect markerRect = new Rect(margin, y + 2, 1, 5);
+		float aux;
+		float s = steps;
+		
+		for(int i = 0; i <= steps; i++)
+		{
+			aux = i;
+			aux 	/= s;
+			markerRect.x = margin + 5 + aux * 196;
+			
+			GUI.DrawTexture(markerRect, whiteMarker);
+		}
+	}
+	
+	void DrawAbout()
+	{
+		GUI.Label(new Rect(windowBackgroundRect.x + 20, windowBackgroundRect.y + 15, 200, 20), "ABOUT", titleStyle);	
+		
+		Rect abRect = new Rect(panelLeftRect.x + 7, panelLeftRect.y + 30, panelLeftRect.width - 12, panelLeftRect.height - 40);
+		
+		GUISkin cSkin = GUI.skin;
+		GUI.skin = hudSkin;
+		
+		GUILayout.BeginArea(abRect);
+		aboutScroll = GUILayout.BeginScrollView(aboutScroll, GUILayout.Width(abRect.width));
+		
+		GUILayout.BeginHorizontal();
+		GUILayout.Space(17);
+		GUILayout.BeginVertical();
+		GUILayout.Label("Developed by GT Dead Week Team.", aboutStyle, GUILayout.Width(423));
+		GUILayout.Space(5);
+		GUILayout.Label("Arnaud Golinvaux", GUILayout.Width(400));
+		GUILayout.Space(5);
+		GUILayout.Label("Chenglong Jiang", GUILayout.Width(400));
+		GUILayout.Space(5);
+		GUILayout.Label("Michael Landes", GUILayout.Width(400));
+		GUILayout.Space(5);
+		GUILayout.Label("Josephine Simon", GUILayout.Width(400));
+		GUILayout.Space(5);
+		GUILayout.Label("Chuan Yao", GUILayout.Width(400));
+		GUILayout.Space(5);
+		GUILayout.Space(20);
+		GUILayout.Label("Special thanks to:", aboutStyle, GUILayout.Width(423));
+		GUILayout.Space(5);
+		GUILayout.Label("", GUILayout.Width(400));
+		
+		GUILayout.Space(70);
+
+		//GUI.DrawTexture(new Rect(170, 180, 339 * 0.75f, 94 * 0.75f), aquirisLogo.normal.background);
+		
+		GUILayout.EndVertical();
+		GUILayout.EndHorizontal();
+		
+		GUILayout.EndScrollView();
+		
+		GUILayout.EndArea();
+		
+		GUI.skin = cSkin;
+	}
+	
+	void DrawMenu()
+	{
+		menuBackgroundRect.x = 0;
+		menuBackgroundRect.y = (screenSize.y - menuBackgroundRect.height) * 0.5f - 50;
+		
+		playGameRect.x = menuBackgroundRect.x + 110;
+		
+		if(hideOptions)
+		{
+			playGameRect.y = menuBackgroundRect.y + 65;
+		}
+		else
+		{
+			playGameRect.y = menuBackgroundRect.y + 42;
+		}
+		
+		resumeRect.x = playGameRect.x;
+		resumeRect.y = playGameRect.y;
+		
+		optionsRect.x = playGameRect.x;
+		optionsRect.y = playGameRect.y + playGameRect.height + 15;
+		
+		graphicsRect.x = playGameRect.x;
+		
+		if(hideOptions)
+		{
+			graphicsRect.y = playGameRect.y + playGameRect.height + 15;
+		}
+		else
+		{
+			graphicsRect.y = optionsRect.y + optionsRect.height + 15;
+		}
+		
+		aboutRect.x = playGameRect.x;
+		aboutRect.y = graphicsRect.y + graphicsRect.height + 15;
+		
+		GUI.DrawTexture(menuBackgroundRect, menuBackground);
+		
+		var overButton = false;
+
+		if(resumeRect.Contains(mousePos))
+		{
+			overButton = true;
+			
+			if(!over)
+			{
+				over = true;
+				audio.volume = overVolume;
+				audio.PlayOneShot(overSound);
+			}
+			
+			GUI.DrawTexture(resumeRect, resumeOver);
+			
+			if(alpha <= 0.0 && GameManager.pause)
+			{
+				if(evt.type == EventType.MouseUp && evt.button == 0 && Time.time > lastMouseTime)
+				{
+					audio.volume = clickVolume;
+					audio.PlayOneShot(clickSound);
+					
+					GameManager.pause = false;
+					Time.timeScale = 1.0f;
+					//Time.timeScale = 1.0;
+					visible = false;
+					lastMouseTime = Time.time;
+				}
+			}
+		}
+		else
+		{
+			GUI.DrawTexture(resumeRect, resume);
+		}
+		
+		if(!hideOptions)
+		{
+			if(optionsRect.Contains(mousePos))
+			{
+				overButton = true;
+				
+				if(!over)
+				{
+					over = true;
+					audio.volume = overVolume;
+					audio.PlayOneShot(overSound);
+				}
+				
+				GUI.DrawTexture(optionsRect, optionsOver);
+				
+				if(alpha <= 0.0 && !goingToGame)
+				{
+					if(evt.type == EventType.MouseUp && evt.button == 0 && Time.time > lastMouseTime)
+					{
+						audio.volume = clickVolume;
+						audio.PlayOneShot(clickSound);
+						
+						if(state != MainMenuState.OPTIONS)
+						{
+							state = MainMenuState.OPTIONS;
+						}
+						else
+						{
+							state = MainMenuState.IDLE;
+						}
+						
+						lastMouseTime = Time.time;
+					}
+				}
+			}
+			else
+			{
+				GUI.DrawTexture(optionsRect, options);
+			}
+		}
+		
+		if(graphicsRect.Contains(mousePos))
+		{
+			overButton = true;
+			
+			if(!over)
+			{
+				over = true;
+				audio.volume = overVolume;
+				audio.PlayOneShot(overSound);
+			}
+			
+			GUI.DrawTexture(graphicsRect, graphicsOver);
+			
+			if(alpha <= 0.0f && !goingToGame)
+			{
+				if(evt.type == EventType.MouseUp && evt.button == 0 && Time.time > lastMouseTime)
+				{
+					audio.volume = clickVolume;
+					audio.PlayOneShot(clickSound);
+					
+					if(state != MainMenuState.GRAPHICS)
+					{
+						state = MainMenuState.GRAPHICS;
+					}
+					else
+					{
+						state = MainMenuState.IDLE;
+					}
+					
+					lastMouseTime = Time.time;
+				}
+			}
+		}
+		else
+		{
+			GUI.DrawTexture(graphicsRect, graphics);
+		}
+		
+		if(aboutRect.Contains(mousePos))
+		{
+			overButton = true;
+			
+			if(!over)
+			{
+				over = true;
+				audio.volume = overVolume;
+				audio.PlayOneShot(overSound);
+			}
+			
+			GUI.DrawTexture(aboutRect, aboutOver);
+			
+			if(alpha <= 0.0 && !goingToGame)
+			{
+				if(evt.type == EventType.MouseUp && evt.button == 0 && Time.time > lastMouseTime)
+				{
+					audio.volume = clickVolume;
+					audio.PlayOneShot(clickSound);
+					
+					if(state != MainMenuState.ABOUT)
+					{
+						state = MainMenuState.ABOUT;
+					}
+					else
+					{
+						state = MainMenuState.IDLE;
+					}
+					
+					lastMouseTime = Time.time;
+				}
+			}
+		}
+		else
+		{
+			GUI.DrawTexture(aboutRect, about);
+		}
+		
+		if(!overButton)
+		{
+			over = false;
+		}
+	}
+
+
+	void OnGUI()
+	{
+		Event evt = Event.current;
+
+		DrawGUI (evt);
+
+	}
+
+}
