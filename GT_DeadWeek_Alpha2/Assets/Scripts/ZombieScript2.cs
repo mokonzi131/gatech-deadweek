@@ -19,6 +19,7 @@ public class ZombieScript2 : MonoBehaviour
 	Transform _transform;
 	Transform player;
 	Transform _eyes;
+	GameManager gameManager;
 	#endregion
 	#region movement variables
 	public float patrolSpeed = 2;
@@ -73,7 +74,7 @@ public class ZombieScript2 : MonoBehaviour
 	
 	bool seenAround;
 	bool isHiding;
-	int layerMask = 1 << 8;
+	public LayerMask layerMask;
 	
 	Animator _animator;
 	private Vector3 lastPosition;
@@ -81,6 +82,7 @@ public class ZombieScript2 : MonoBehaviour
 
 	void Start()
 	{
+		gameManager = GameObject.FindWithTag ("GameController").GetComponent<GameManager> ();
 		_agent = GetComponent<NavMeshAgent> ();
 		_transform = GetComponent<Transform>();
 		_eyes = transform.Find ("Eyes");
@@ -489,18 +491,32 @@ public class ZombieScript2 : MonoBehaviour
 		}
 	}
 
+	
 	void SeePlayer()
 	{
+		
+		if (!seenAround)
+		{
+			gameManager.countAttackingZombie ++;
+		}
+		
 		seenAround = true;
 		transform.Find ("EnemyMark").Find ("StaticMark").gameObject.SetActive (false);
 		transform.Find ("EnemyMark").Find ("DynamicMark").gameObject.SetActive (true);
-
+		
 	}
 	void LosePlayer()
 	{
+		if (seenAround)
+		{
+			gameManager.countAttackingZombie --;
+			if (gameManager.countAttackingZombie < 0)
+				gameManager.countAttackingZombie = 0;
+		}
 		seenAround = false;
 		transform.Find ("EnemyMark").Find ("StaticMark").gameObject.SetActive (true);
 		transform.Find ("EnemyMark").Find ("DynamicMark").gameObject.SetActive (false);
-
+		
 	}
+
 }
