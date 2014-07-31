@@ -14,6 +14,7 @@ public class ThrowScript : MonoBehaviour {
 	
 	public GameObject throwable;
 	private Inventory inventory;	
+	private Stamina stamina;
 
 	public Transform eyePoint;
 
@@ -28,7 +29,7 @@ public class ThrowScript : MonoBehaviour {
 	void Start(){
 		//throwable = GameObject.FindWithTag ("Book");
 		inventory = GameObject.FindWithTag ("GameController").GetComponent<Inventory>();
-
+		stamina = GameObject.FindWithTag ("GameController").GetComponent<Stamina> ();
 		ignoreLayer = ~ignoreLayer;
 
 		startPoint = new Vector3 ();
@@ -76,10 +77,13 @@ public class ThrowScript : MonoBehaviour {
 					{
 						if (inventory.remove(Inventory.ItemCategory.BOOK))
 						{
-							GameObject book = Instantiate(throwable, startPoint, Quaternion.identity) as GameObject;
-							book.gameObject.GetComponent<BookPropertyScript>().BeingThrowed();
-							book.transform.LookAt(hit.point);
-							book.rigidbody.velocity = worldVelocity;
+							if (stamina.deltaStamina(-stamina.actionCost))
+							{
+								GameObject book = Instantiate(throwable, startPoint, Quaternion.identity) as GameObject;
+								book.gameObject.GetComponent<BookPropertyScript>().BeingThrowed();
+								book.transform.LookAt(hit.point);
+								book.rigidbody.velocity = worldVelocity;
+							}
 						}
 					}
 				}
@@ -91,6 +95,7 @@ public class ThrowScript : MonoBehaviour {
 					GameObject book = Instantiate(throwable, startPoint, Quaternion.identity) as GameObject;
 					book.gameObject.GetComponent<BookPropertyScript>().BeingThrowed();
 					book.transform.LookAt(transform.position);
+					book.transform.Rotate(Vector3.up * 90);
 				}
 			}
 

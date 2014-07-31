@@ -95,7 +95,6 @@
      <Compile Include="Assets\Scripts\Util_Noise.cs" />
      <Compile Include="Assets\Scripts\VictoryScript.cs" />
      <Compile Include="Assets\Scripts\WaypointScript.cs" />
-     <Compile Include="Assets\Scripts\ZombieScript1.cs" />
      <Compile Include="Assets\Scripts\ZombieScript2.cs" />
      <Compile Include="Assets\Scripts\blinking.cs" />
      <Compile Include="Assets\Scripts\rotation.cs" />

@@ -10,7 +10,7 @@ Created by Team "GT Dead Week"
 using UnityEngine;
 using System.Collections;
 
-public class PickUpActionNew : MonoBehaviour {
+public class PickupActionNew : MonoBehaviour {
 	
 	
 	private GameObject target;
@@ -35,74 +35,36 @@ public class PickUpActionNew : MonoBehaviour {
 		
 		if (lastWarningTextTime + warningTextTimeout < Time.time)
 			ClearWarningText();
-		
-		if (Input.GetButtonDown("Pick"))
+	}
+
+	void OnControllerColliderHit(ControllerColliderHit hit) {
+
+		if (hit.gameObject.tag == "Book")
 		{
-			var hitColliders = Physics.OverlapSphere (transform.position, grabRange);
-			
-			float minAngle = 180.0f;
-			GameObject targetObject = null;
-			
-			
-			foreach(var hitCollider in hitColliders)
+			if (!hit.gameObject.GetComponent<BookPropertyScript>().isJustThrowed)
 			{
-				if (hitCollider.gameObject.tag == "Book" || hitCollider.gameObject.tag == "Drink" || 
-				    hitCollider.gameObject.tag == "Food" || hitCollider.gameObject.tag == "TheBook")
-				{
-					Vector3 objectDirection = hitCollider.transform.position - target.transform.position;
-					objectDirection.y = 0;
-					
-					float newAngle = Vector3.Angle(target.transform.forward, objectDirection);
-					
-					//Debug.Log("There is a cover here!");
-					if(newAngle < minAngle)
-					{
-						minAngle = newAngle;
-						targetObject = hitCollider.gameObject;
-					}
-					
-				}
-			}
-			
-			if (targetObject == null)
-				return;
-			
-			if (minAngle < 80)
-			{
-				
-				//				UpdateWarningText("Pick Up!");
-				//				if (targetObject.tag != "Drink")
-				//					Destroy(targetObject);
-				
+
 				Inventory inventory = GameObject.FindWithTag("GameController").GetComponent<Inventory>();
-				Inventory.ItemCategory c = Inventory.ItemCategory.FOOD ;
-				if (targetObject.tag == "Book")
-					c = Inventory.ItemCategory.BOOK;
-				float mass = targetObject.rigidbody.mass ;
-				if (targetObject.tag == "Drink")
-					mass /= 10 ;
-				if(targetObject.tag != "TheBook" && inventory.addItem(c, new Item(mass, targetObject.name))){
-					UpdateWarningText("Pick Up!");
-					if(targetObject.tag != "Drink")
-						Destroy(targetObject);
-					//targetObject.SetActive(false);
-				} else if (targetObject.tag == "TheBook"){
-					inventory.hasRetrieveTheBook = true ;
-					UpdateWarningText("You found THE Book!");
-					Destroy(targetObject);
-				} else {
-					UpdateWarningText("There is no more room for this in your backpack!");
-				}
+
+				Inventory.ItemCategory c = Inventory.ItemCategory.BOOK;
+
 				
+				float mass = hit.gameObject.rigidbody.mass;
+
+				if (inventory.addItem(c, new Item(mass, hit.gameObject.name)))
+				{
+					UpdateWarningText("Pick Up!");
+					Destroy(hit.gameObject);
+						
+				}
+				else 
+				{
+					UpdateWarningText("There is no more room for this in your backpack!");
+
+				}
 			}
-			else
-			{
-				UpdateWarningText("Wrong Direction!");
-			}
-			
 		}
 	}
-	
 	
 	
 	void UpdateWarningText(string msg)

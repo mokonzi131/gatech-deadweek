@@ -304,6 +304,7 @@ public class ZombieScript2 : MonoBehaviour
 	
 	void HideOut()
 	{
+		//Debug.Log ("Now hideout!" + Vector3.Distance (_transform.position, wayOut.position).ToString());
 		if (Vector3.Distance (_transform.position, wayOut.position) > range)
 		{
 			Move(wayOut, runSpeed);
@@ -440,6 +441,8 @@ public class ZombieScript2 : MonoBehaviour
 //		targetPos = Camera.main.WorldToScreenPoint (_transform.position + playerOffset);
 //		
 //		GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 80, 20), stateText);
+//
+//		//Debug.Log (stateText);
 //	}
 //	#endregion
 	
@@ -508,6 +511,7 @@ public class ZombieScript2 : MonoBehaviour
 						minDist2 = newDist2;
 						wayOut = child;
 					}
+					//Debug.Log("There is a wayout!");
 				}
 				
 			}

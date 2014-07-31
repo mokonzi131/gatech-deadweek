@@ -26,7 +26,10 @@ public class PlayerController : MonoBehaviour {
 	static public bool dead;
 	
 	// Public variables hidden in inspector
-	
+
+	[HideInInspector]
+	public bool canRun;
+
 	[HideInInspector]
 	public bool walk;
 	
@@ -104,6 +107,7 @@ public class PlayerController : MonoBehaviour {
 		walk = true;
 		aim = false;
 		reloading = false;
+		canRun = true;
 
 		controller = gameObject.GetComponent<CharacterController> ();
 		motor = gameObject.GetComponent<CharacterMotor> ();
@@ -259,7 +263,7 @@ public class PlayerController : MonoBehaviour {
 		crouch |= dead;
 		
 		//Check if the user wants the soldier to walk
-		walk = (!Input.GetButton("Run") && !dead || moveDir == Vector3.zero || crouch || moveDir.z<=0);
+		walk = (!Input.GetButton("Run") && !dead || moveDir == Vector3.zero || crouch || moveDir.z<=0) || !canRun;
 
 	}
 

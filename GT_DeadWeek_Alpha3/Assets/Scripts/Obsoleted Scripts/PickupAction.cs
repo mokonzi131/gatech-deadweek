@@ -10,10 +10,10 @@ Created by Team "GT Dead Week"
 using UnityEngine;
 using System.Collections;
 
-public class PickUpAction : MonoBehaviour {
+public class PickupAction : MonoBehaviour {
+
 	
-	
-	private GameObject target;
+	private Rigidbody target;
 	
 	public GUIText warningText;
 	
@@ -24,7 +24,7 @@ public class PickUpAction : MonoBehaviour {
 	int layerMask;
 	
 	void Start() {
-		target = GameObject.FindWithTag("Player");
+		target = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();
 		layerMask = 1 << 8;
 		
 		layerMask = ~layerMask;
@@ -36,8 +36,9 @@ public class PickUpAction : MonoBehaviour {
 		if (lastWarningTextTime + warningTextTimeout < Time.time)
 			ClearWarningText();
 		
-		if (Input.GetButtonDown("Pick"))
+		if (Input.GetButton("Pick"))
 		{
+			Debug.Log("Try to pick!");
 			var hitColliders = Physics.OverlapSphere (transform.position, grabRange);
 			
 			float minAngle = 180.0f;
@@ -69,6 +70,10 @@ public class PickUpAction : MonoBehaviour {
 			
 			if (minAngle < 80)
 			{
+				
+//				UpdateWarningText("Pick Up!");
+//				if (targetObject.tag != "Drink")
+//					Destroy(targetObject);
 
 				Inventory inventory = GameObject.FindWithTag("GameController").GetComponent<Inventory>();
 				Inventory.ItemCategory c = Inventory.ItemCategory.FOOD ;
@@ -78,6 +83,7 @@ public class PickUpAction : MonoBehaviour {
 				if (targetObject.tag == "Drink")
 					mass /= 10 ;
 				if(targetObject.tag != "TheBook" && inventory.addItem(c, new Item(mass, targetObject.name))){
+					Debug.Log("Pick Up!");
 					UpdateWarningText("Pick Up!");
 					if(targetObject.tag != "Drink")
 						Destroy(targetObject);
@@ -87,12 +93,14 @@ public class PickUpAction : MonoBehaviour {
 					UpdateWarningText("You found THE Book!");
 					Destroy(targetObject);
 				} else {
+					Debug.Log("There is no more room for this in your backpack!");
 					UpdateWarningText("There is no more room for this in your backpack!");
 				}
 				
 			}
 			else
 			{
+				Debug.Log("Wrong Direction!");
 				UpdateWarningText("Wrong Direction!");
 			}
 			

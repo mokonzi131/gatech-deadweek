@@ -1,10 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\GT_DeadWeek_Alpha3\Assets\Scripts\ZombieScript1.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\EnnemyPush.cs">
     <Files>
-      <File FileName="..\GT_DeadWeek_Alpha3\Assets\Scripts\ZombieScript2.cs" Line="70" Column="1" />
-      <File FileName="..\GT_DeadWeek_Alpha3\Assets\Scripts\ZombieScript1.cs" Line="313" Column="4" />
-      <File FileName="..\GT_DeadWeek_Alpha3\Assets\Scripts\PlayerDamageControl.cs" Line="42" Column="19" />
+      <File FileName="..\GT_DeadWeek_Alpha3\Assets\Scripts\ZombieScript2.cs" Line="427" Column="24" />
+      <File FileName="Assets\EnnemyPush.cs" Line="56" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

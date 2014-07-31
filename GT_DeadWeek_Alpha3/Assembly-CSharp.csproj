@@ -46,14 +46,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\AIScript1.cs" />
-     <Compile Include="Assets\Scripts\AIScript2.cs" />
-     <Compile Include="Assets\Scripts\AIScriptHybridWithHide.cs" />
-     <Compile Include="Assets\Scripts\AIScriptNavMeshWithHide.cs" />
      <Compile Include="Assets\Scripts\AdjustCoverPositionScript.cs" />
      <Compile Include="Assets\Scripts\AnimationController.cs" />
      <Compile Include="Assets\Scripts\ArrowTarget.cs" />
-     <Compile Include="Assets\Scripts\Astar.cs" />
      <Compile Include="Assets\Scripts\AxePropertyScript.cs" />
      <Compile Include="Assets\Scripts\BgmScript.cs" />
      <Compile Include="Assets\Scripts\BookPropertyScript.cs" />
@@ -74,9 +69,15 @@
      <Compile Include="Assets\Scripts\IsAttackedScript.cs" />
      <Compile Include="Assets\Scripts\MainMenuScreen.cs" />
      <Compile Include="Assets\Scripts\MinimapArrowLookAt.cs" />
+     <Compile Include="Assets\Scripts\Obsoleted Scripts\AIScript1.cs" />
+     <Compile Include="Assets\Scripts\Obsoleted Scripts\AIScript2.cs" />
+     <Compile Include="Assets\Scripts\Obsoleted Scripts\AIScriptHybridWithHide.cs" />
+     <Compile Include="Assets\Scripts\Obsoleted Scripts\AIScriptNavMeshWithHide.cs" />
+     <Compile Include="Assets\Scripts\Obsoleted Scripts\Astar.cs" />
+     <Compile Include="Assets\Scripts\Obsoleted Scripts\PickupAction.cs" />
      <Compile Include="Assets\Scripts\PerlinShake.cs" />
-     <Compile Include="Assets\Scripts\PickUpActionNew.cs" />
-     <Compile Include="Assets\Scripts\PickupAction.cs" />
+     <Compile Include="Assets\Scripts\PickUpAction.cs" />
+     <Compile Include="Assets\Scripts\PickupActionNew.cs" />
      <Compile Include="Assets\Scripts\PlayerCamera.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerDamageControl.cs" />
@@ -93,6 +94,7 @@
      <Compile Include="Assets\Scripts\ThrowScript.cs" />
      <Compile Include="Assets\Scripts\Timer.cs" />
      <Compile Include="Assets\Scripts\Util_Noise.cs" />
+     <Compile Include="Assets\Scripts\VendingMachineScript.cs" />
      <Compile Include="Assets\Scripts\VictoryScript.cs" />
      <Compile Include="Assets\Scripts\WaypointScript.cs" />
      <Compile Include="Assets\Scripts\ZombieScript1.cs" />

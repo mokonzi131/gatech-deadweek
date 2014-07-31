@@ -12,8 +12,10 @@ using System.Collections;
 
 public class StealBookScript : MonoBehaviour {
 
-	public float stealRate = 6.0f;
+	public float stealRate = 2.0f;
 	float lastStealTime = -10.0f;
+
+	Inventory inventory;
 
 	Transform _transform;
 	Transform player;
@@ -24,6 +26,8 @@ public class StealBookScript : MonoBehaviour {
 		player = GameObject.Find("Player").GetComponent<Transform>();
 		if (player == null)
 			Debug.LogError("No player on scene");
+
+		inventory = GameObject.FindWithTag("GameController").GetComponent<Inventory>();
 	
 	}
 	
@@ -35,10 +39,10 @@ public class StealBookScript : MonoBehaviour {
 			{
 				//Add code here to decrease the number of books in the inventory by 1
 
+				inventory.remove(Inventory.ItemCategory.BOOK);
 
 				lastStealTime = Time.time;
 			}
 		}
-	
 	}
 }

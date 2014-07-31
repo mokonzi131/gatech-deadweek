@@ -14,7 +14,8 @@ public class Stamina : MonoBehaviour {
 
 	private PlayerController playerController;
 
-	public float StaminaConsumption = 3.0f;
+	public float runCost = 3.0f;
+	public float actionCost = 10.0f;
 	public float StaminaRecovery = 1.0f;
 	public float StaminaRecoveryTimeout = 2.0f;
 	
@@ -33,9 +34,19 @@ public class Stamina : MonoBehaviour {
 		stamina = maxStamina;
 	}
 
-	public void deltaStamina(float ds){
+	public bool deltaStamina(float ds){
+		if (stamina + ds < 0)
+		{
+			return false;
+		}
 		stamina += ds;
 		stamina = Mathf.Max(0, Mathf.Min(stamina, (float)maxStamina));
+		return true;
+	}
+
+	public void setToFull()
+	{
+		stamina = maxStamina;
 	}
 	
 	// Update is called once per frame
@@ -47,7 +58,7 @@ public class Stamina : MonoBehaviour {
 
 		if (playerController.controller.velocity.magnitude > 0.1 && !playerController.walk)
 		{
-			deltaStamina(-StaminaConsumption * Time.deltaTime);
+			deltaStamina(-runCost * Time.deltaTime);
 			lastActingTime = Time.time;
 		}
 		else
@@ -57,11 +68,11 @@ public class Stamina : MonoBehaviour {
 			}
 		}
 
-//		if (stamina < 0.03*maxStamina)
-//			playerController.canRun = false;
-//		
-//		if (stamina > 0.15*maxStamina)
-//			playerController.canRun = true;
+		if (stamina < 0.03*maxStamina)
+			playerController.canRun = false;
+		
+		if (stamina > 0.15*maxStamina)
+			playerController.canRun = true;
 		
 		
 		staminaBar.setStamina (stamina);

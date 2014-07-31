@@ -7,11 +7,13 @@ public class EnemyPush : MonoBehaviour {
 	private GameObject target;
 	public float pushRange = 2.0f;
 	float timeAtLastPush;
+	private Stamina stamina;
 	
 	// Use this for initialization
 	void Start () {
 		_animator = gameObject.GetComponent<Animator> ();
 		target = GameObject.FindWithTag("Player");
+		stamina = GameObject.FindWithTag ("GameController").GetComponent<Stamina> ();
 		
 	}
 	
@@ -24,7 +26,13 @@ public class EnemyPush : MonoBehaviour {
 			
 			float minAngle = 180.0f;
 			GameObject targetObject = null;
+
+			if (!stamina.deltaStamina(-stamina.actionCost))
+				return;
+
 			
+			_animator.SetTrigger("pushTrigger");
+
 			foreach(var hitCollider in hitColliders)
 			{
 				if (hitCollider.gameObject.tag == "Enemy")
@@ -42,7 +50,7 @@ public class EnemyPush : MonoBehaviour {
 					
 					if (minAngle < 50)
 					{
-						_animator.SetTrigger("pushTrigger");
+						//_animator.SetTrigger("pushTrigger");
 						
 						
 						Animator zombieAnimator;

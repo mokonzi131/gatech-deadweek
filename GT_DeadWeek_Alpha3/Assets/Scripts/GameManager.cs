@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour {
 
 	public GameObject gamePlaySoldier;
 	//public var sarge : SargeManager;
+	public GameObject radar;
 	
 	static public bool receiveDamage;
 	static public bool pause;
@@ -62,7 +63,14 @@ public class GameManager : MonoBehaviour {
 	void Update()
 	{
 		if(!pause && running) time += Time.deltaTime;
-		
+
+		if (Input.GetButtonDown("MapSwitch"))
+		{
+			Debug.Log("Map" + radar.activeSelf.ToString());
+
+			radar.SetActive(!radar.activeSelf);
+		}
+
 		if(Input.GetButtonDown("Pause"))
 		{
 			pause = !pause;
