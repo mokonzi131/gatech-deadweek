@@ -8,7 +8,8 @@ public class MainMenuScreen : MonoBehaviour {
 	enum MainMenuState
 	{
 		IDLE,
-		ABOUT
+		ABOUT,
+		INSTRUCTION
 	};
 
 	public Texture2D menuBackground;
@@ -34,7 +35,11 @@ public class MainMenuScreen : MonoBehaviour {
 	public Texture2D about;
 	public Texture2D aboutOver;
 	private Rect aboutRect;
-	
+
+	public Texture2D instruction;
+	public Texture2D instructionOver;
+	private Rect instructionRect;
+
 	public GUISkin hudSkin;
 	
 	private GUIStyle panelLeft;
@@ -137,6 +142,7 @@ public class MainMenuScreen : MonoBehaviour {
 
 		checkpointRect = new Rect (0, 0, checkpoint.width * 0.75f, checkpoint.height * 0.75f);
 		restartRect = new Rect (0, 0, restart.width * 0.75f, restart.height * 0.75f);
+		instructionRect = new Rect(0, 0, instruction.width * 0.45f, instruction.height * 0.45f);
 
 	}
 	
@@ -194,7 +200,7 @@ public class MainMenuScreen : MonoBehaviour {
 				
 				GUI.DrawTexture(windowBackgroundRect, windowBackground);
 				
-				if(state == MainMenuState.ABOUT)
+				if(state == MainMenuState.ABOUT || state == MainMenuState.INSTRUCTION)
 				{
 					panelLeftRect.width = 475;
 					panelLeftRect.x = windowBackgroundRect.x + 15;
@@ -207,6 +213,10 @@ public class MainMenuScreen : MonoBehaviour {
 			if(state == MainMenuState.ABOUT)
 			{
 				DrawAbout();
+			}
+			else if (state == MainMenuState.INSTRUCTION)
+			{
+				DrawInstruction();
 			}
 			
 			DrawMenu();
@@ -316,6 +326,53 @@ public class MainMenuScreen : MonoBehaviour {
 		
 		GUI.skin = cSkin;
 	}
+
+	void DrawInstruction()
+	{
+		GUI.Label(new Rect(windowBackgroundRect.x + 20, windowBackgroundRect.y + 15, 200, 20), "INSTRUCTION", titleStyle);	
+		
+		Rect abRect = new Rect(panelLeftRect.x + 7, panelLeftRect.y + 30, panelLeftRect.width - 12, panelLeftRect.height - 40);
+		
+		GUISkin cSkin = GUI.skin;
+		GUI.skin = hudSkin;
+		
+		GUILayout.BeginArea(abRect);
+		aboutScroll = GUILayout.BeginScrollView(aboutScroll, GUILayout.Width(abRect.width));
+		
+		GUILayout.BeginHorizontal();
+		GUILayout.Space(17);
+		GUILayout.BeginVertical();
+		GUILayout.Label("Support: Keyboard+Mouse / XBOX Joystick", aboutStyle, GUILayout.Width(423));
+		GUILayout.Space(5);
+		GUILayout.Label("W+S / Left Axis:  Move Forward and Backward", GUILayout.Width(400));
+		GUILayout.Space(5);
+		GUILayout.Label("Left Shift / Left Button:  Hold and Run", GUILayout.Width(400));
+		GUILayout.Space(5);
+		GUILayout.Label("Mouse Movement / Right Axis:  Camera View Angle (Aim)", GUILayout.Width(400));
+		GUILayout.Space(5);
+		GUILayout.Label("X / Right Button:  Throw", GUILayout.Width(400));
+		GUILayout.Space(5);
+		GUILayout.Label("Mouse Right Click / Left Trigger: Aim", GUILayout.Width(400));
+		GUILayout.Space(5);
+		GUILayout.Label("ESC / Button Start: Pause", GUILayout.Width(400));
+		GUILayout.Space(5);
+		GUILayout.Label("M / Button Back: Mini Map On/Off", GUILayout.Width(400));
+		GUILayout.Space(5);
+
+		GUILayout.Space(20);
+
+		
+		GUILayout.EndVertical();
+		GUILayout.EndHorizontal();
+		
+		GUILayout.EndScrollView();
+		
+		GUILayout.EndArea();
+		
+		GUI.skin = cSkin;
+	}
+
+
 	
 	void DrawMenu()
 	{
@@ -323,16 +380,22 @@ public class MainMenuScreen : MonoBehaviour {
 		menuBackgroundRect.y = (screenSize.y - menuBackgroundRect.height) * 0.5f - 50;
 
 		resumeRect.x = menuBackgroundRect.x + 110;
-		resumeRect.y = menuBackgroundRect.y + 65;
+		resumeRect.y = menuBackgroundRect.y + 55;
 
 		checkpointRect.x = resumeRect.x;
-		checkpointRect.y = resumeRect.y + resumeRect.height + 25;
+		checkpointRect.y = resumeRect.y + resumeRect.height + 15;
 
 		restartRect.x = checkpointRect.x;
-		restartRect.y = checkpointRect.y + checkpointRect.height + 25;
+		restartRect.y = checkpointRect.y + checkpointRect.height + 15;
+		
+		instructionRect.x = restartRect.x;
+		instructionRect.y = restartRect.y + restartRect.height + 15;
 
-		aboutRect.x = restartRect.x;
-		aboutRect.y = restartRect.y + restartRect.height + 25;
+		aboutRect.x = instructionRect.x;
+		aboutRect.y = instructionRect.y + instructionRect.height + 15;
+
+		
+
 
 		GUI.DrawTexture(menuBackgroundRect, menuBackground);
 		
@@ -475,6 +538,48 @@ public class MainMenuScreen : MonoBehaviour {
 		{
 			GUI.DrawTexture(aboutRect, about);
 		}
+
+
+
+		if(instructionRect.Contains(mousePos))
+		{
+			overButton = true;
+			
+			if(!over)
+			{
+				over = true;
+				audio.volume = overVolume;
+				audio.PlayOneShot(overSound);
+			}
+			
+			GUI.DrawTexture(instructionRect, instructionOver);
+			
+			if(alpha <= 0.0 && !goingToGame)
+			{
+				if(evt.type == EventType.MouseUp && evt.button == 0 && Time.time > lastMouseTime)
+				{
+					audio.volume = clickVolume;
+					audio.PlayOneShot(clickSound);
+					
+					if(state != MainMenuState.INSTRUCTION)
+					{
+						state = MainMenuState.INSTRUCTION;
+					}
+					else
+					{
+						state = MainMenuState.IDLE;
+					}
+					
+					lastMouseTime = Time.time;
+				}
+			}
+		}
+		else
+		{
+			GUI.DrawTexture(instructionRect, instruction);
+		}
+
+
 		
 		if(!overButton)
 		{

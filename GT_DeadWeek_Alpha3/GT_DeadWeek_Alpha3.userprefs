@@ -1,12 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EnemyPush.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MainMenuScreen.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameManager.cs" Line="60" Column="49" />
-      <File FileName="Assets\Scripts\ThrowScript.cs" Line="101" Column="4" />
-      <File FileName="Assets\Scripts\BookPropertyScript.cs" Line="30" Column="3" />
-      <File FileName="Assets\Scripts\PickupActionNew.cs" Line="58" Column="7" />
-      <File FileName="Assets\Scripts\EnemyPush.cs" Line="23" Column="4" />
+      <File FileName="Assets\Scripts\MainMenuScreen.cs" Line="364" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
