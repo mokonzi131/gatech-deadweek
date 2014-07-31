@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 41dfaf59564464b1b838f07c02a45be7
+guid: 1487461990aee483c9a7ae707f130986
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
@@ -217,7 +217,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       loopTime: 1
-      loopBlend: 1
+      loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
@@ -438,7 +438,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 1
   importAnimation: 1
-  copyAvatar: 1
+  copyAvatar: 0
   humanDescription:
     human: []
     skeleton: []
@@ -450,8 +450,7 @@ ModelImporter:
     legStretch: .0500000007
     feetSpacing: 0
     rootMotionBoneName: 
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: ffd8b250a22554591be3169a7f05f4b7,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   additionalBone: 0
   userData: 

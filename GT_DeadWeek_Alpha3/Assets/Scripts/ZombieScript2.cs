@@ -94,17 +94,17 @@ public class ZombieScript2 : MonoBehaviour
 		player = GameObject.Find("Player").GetComponent<Transform>();
 		if (player == null)
 			Debug.LogError("No player on scene");
-		if (string.IsNullOrEmpty(strTag)) 
-			Debug.LogError("No waypoint tag given");
+//		if (string.IsNullOrEmpty(strTag)) 
+//			Debug.LogError("No waypoint tag given");
 		
 		index = 0;
 		
-		GameObject[] gos = GameObject.FindGameObjectsWithTag(strTag);
-		foreach (GameObject go in gos)
-		{
-			WaypointScript script = go.GetComponent<WaypointScript>();
-			waypoint.Add(script.index, go.transform);
-		}
+//		GameObject[] gos = GameObject.FindGameObjectsWithTag(strTag);
+//		foreach (GameObject go in gos)
+//		{
+//			WaypointScript script = go.GetComponent<WaypointScript>();
+//			waypoint.Add(script.index, go.transform);
+//		}
 		
 		delFunc = this.Walk;
 		delEnum = null;
@@ -175,9 +175,10 @@ public class ZombieScript2 : MonoBehaviour
 	
 	void Walk()
 	{
-		if (Vector3.Distance(_transform.position, waypoint[index].position) > range)
+		if (Vector3.Distance(_transform.position, player.position) > range)//waypoint[index].position) > range)
 		{
-			Move(waypoint[index], patrolSpeed);
+			//Move(waypoint[index], patrolSpeed);
+			Move (player, patrolSpeed);
 			//animation.CrossFade("Walk");
 			stateText = "Walk";
 		}

@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\AdjustCoverPositionScript.cs" />
      <Compile Include="Assets\Scripts\AnimationController.cs" />
      <Compile Include="Assets\Scripts\ArrowTarget.cs" />
+     <Compile Include="Assets\Scripts\AutoDestruction.cs" />
      <Compile Include="Assets\Scripts\AxePropertyScript.cs" />
      <Compile Include="Assets\Scripts\BgmScript.cs" />
      <Compile Include="Assets\Scripts\BookPropertyScript.cs" />
@@ -98,6 +99,7 @@
      <Compile Include="Assets\Scripts\VendingMachineScript.cs" />
      <Compile Include="Assets\Scripts\VictoryScript.cs" />
      <Compile Include="Assets\Scripts\WaypointScript.cs" />
+     <Compile Include="Assets\Scripts\ZombiePopUp.cs" />
      <Compile Include="Assets\Scripts\ZombieScript1.cs" />
      <Compile Include="Assets\Scripts\ZombieScript2.cs" />
      <Compile Include="Assets\Scripts\blinking.cs" />

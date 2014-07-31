@@ -175,9 +175,10 @@ public class ZombieScript1 : MonoBehaviour
 	
 	void Walk()
 	{
-		if (Vector3.Distance(_transform.position, waypoint[index].position) > range)
+		if (Vector3.Distance(_transform.position, player.position) > range)//waypoint[index].position) > range)
 		{
-			Move(waypoint[index], patrolSpeed);
+			//Move(waypoint[index], patrolSpeed);
+			Move (player, patrolSpeed);
 			//animation.CrossFade("Walk");
 			stateText = "Walk";
 		}
