@@ -1,10 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\VictoryScript.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\GT_DeadWeek_Alpha4\Assets\Scripts\Timer.cs">
     <Files>
-      <File FileName="Assets\Scripts\CheckpointManagerScript.cs" Line="74" Column="3" />
-      <File FileName="Assets\Scripts\CheckpointScript.cs" Line="44" Column="4" />
-      <File FileName="Assets\Scripts\VictoryScript.cs" Line="62" Column="2" />
+      <File FileName="..\GT_DeadWeek_Alpha4\Assets\Scripts\Timer.cs" Line="77" Column="24" />
+      <File FileName="..\GT_DeadWeek_Alpha4\Assets\Scripts\MainMenuScreen.cs" Line="462" Column="6" />
+      <File FileName="..\GT_DeadWeek_Alpha4\Assets\Scripts\CheckpointManagerScript.cs" Line="68" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

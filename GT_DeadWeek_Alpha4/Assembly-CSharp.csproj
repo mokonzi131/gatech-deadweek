@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{E776EE21-C8C7-109E-210E-CAD90D0A8690}</ProjectGuid>
+	<ProjectGuid>{6CE4B374-3A1F-F049-3DAA-6684B5BB989C}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GTCampus\Standard Assets\Water (Basic)\Sources\Scripts\WaterSimple.cs" />
      <Compile Include="Assets\Scripts\AdjustCoverPositionScript.cs" />
      <Compile Include="Assets\Scripts\AnimationController.cs" />
      <Compile Include="Assets\Scripts\ArrowTarget.cs" />
@@ -103,20 +102,13 @@
      <Compile Include="Assets\Scripts\blinking.cs" />
      <Compile Include="Assets\Scripts\rotation.cs" />
      <Compile Include="Assets\lowpolyblocks\scripts\MouseLook.cs" />
-     <None Include="Assets\GTCampus\EasyRoads3D Free\Shaders\EasyRoads3D-Surface.shader" />
      <None Include="Assets\Shaders\Alpha-Cancel.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
-     <None Include="Assets\GTCampus\EasyRoads3D Free\Shaders\EasyRoads3D Marker.shader" />
-     <None Include="Assets\GTCampus\EasyRoads3D Free\Shaders\EasyRoads3D-Surface alpha.shader" />
-     <None Include="Assets\GTCampus\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
-     <None Include="Assets\GTCampus\EasyRoads3D Free\Shaders\EasyRoads3D-Normal-Diffuse.shader" />
-     <None Include="Assets\GTCampus\EasyRoads3D Free\_readme.txt" />
-     <None Include="Assets\GTCampus\EasyRoads3D Free\Shaders\EasyRoads3D-Road-Edit-Mode.shader" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
-      <Project>{F8E4692D-D93F-164F-1CEC-6CE5E0FF94AE}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
+      <Project>{52AF3D4D-B26B-E7FE-82D5-6042E812B6C3}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

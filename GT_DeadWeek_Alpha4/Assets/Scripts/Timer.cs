@@ -12,6 +12,7 @@ using System.Collections;
 
 public class Timer : MonoBehaviour {
 
+	public GUIText winText;
 	public float time = 120 ;
 
 	//private TimerDisplay timerDisplay;
@@ -60,30 +61,35 @@ public class Timer : MonoBehaviour {
 //			}
 
 
-			if(time <= 0){
-				loser = true;
-				GameObject.FindWithTag("Player").GetComponent<ThirdPersonCamera>().enabled = false;
-				GameObject.FindWithTag("Player").rigidbody.constraints = RigidbodyConstraints.FreezeAll ;
+			if(time <= 0.5f){
+				Debug.Log("LOSE");
+				winText.text = "YOU LOSE!";
+				Application.LoadLevel(Application.loadedLevel);
+				//GameObject.Find("CheckpointManager").GetComponent<CheckpointManagerScript>().ResetToLastCheckpoint();
+
+//				loser = true;
+//				GameObject.FindWithTag("Player").GetComponent<ThirdPersonCamera>().enabled = false;
+//				GameObject.FindWithTag("Player").rigidbody.constraints = RigidbodyConstraints.FreezeAll ;
 			}
 		}
 	}
 
-	public void OnGUI() 
-	{
-		if (loser)
-		{
-			if(!alreadyClicked){
-				GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 90, 200, 40), "Far too slow!");
-				if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 70, 200, 40), "Try again"))
-				{
-					alreadyClicked = true;
-					GameObject.FindGameObjectWithTag("GameController").GetComponent<FadeInOut>().EndScene() ;
-					//Application.LoadLevel(0);
-				}
-			}
-		}
-		
-	}
+//	public void OnGUI() 
+//	{
+//		if (loser)
+//		{
+//			if(!alreadyClicked){
+//				GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 90, 200, 40), "Far too slow!");
+//				if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 70, 200, 40), "Try again"))
+//				{
+//					alreadyClicked = true;
+//					GameObject.FindGameObjectWithTag("GameController").GetComponent<FadeInOut>().EndScene() ;
+//					//Application.LoadLevel(0);
+//				}
+//			}
+//		}
+//		
+//	}
 
 	public void stop(){
 		isPaused = true;
