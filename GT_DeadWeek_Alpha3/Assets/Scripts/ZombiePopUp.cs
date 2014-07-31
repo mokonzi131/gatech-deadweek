@@ -43,9 +43,12 @@ public class ZombiePopUp : MonoBehaviour {
 			position = player.position + radius*position + 2*Vector3.up;
 			int zombie = Mathf.Min(Random.Range (0,8), 5);
 
-			GameObject.Instantiate(zombies[zombie], position, Quaternion.identity);
-			nbZombie++;
-			Debug.Log ("+1");
+			NavMeshHit h ;
+			if(NavMesh.SamplePosition(position, out h, 100, -1)){
+				GameObject.Instantiate(zombies[zombie], h.position, Quaternion.identity);
+				nbZombie++;
+				Debug.Log ("+1");
+			}
 		}
 	}
 

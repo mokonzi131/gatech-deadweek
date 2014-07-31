@@ -37,8 +37,8 @@ public class CheckpointScript : MonoBehaviour {
 
 				checkpointManager.UpdateCheckpoint(index);
 
-//				GameObject.FindGameObjectWithTag("GameController").GetComponentInChildren<Timer>().setTime(900);
-//				GameObject.FindGameObjectWithTag("GameController").GetComponent<Stamina>().setToFull();
+				GameObject.FindGameObjectWithTag("GameController").GetComponentInChildren<Timer>().setTime(900);
+				GameObject.FindGameObjectWithTag("GameController").GetComponent<Stamina>().setToFull();
 
 //			}
 		}

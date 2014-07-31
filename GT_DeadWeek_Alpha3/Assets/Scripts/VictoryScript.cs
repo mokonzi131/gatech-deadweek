@@ -25,6 +25,7 @@ public class VictoryScript : MonoBehaviour {
 	void Start () {
 		victory = false;
 		alreadyClicked = false;
+		victoryText.text = "";
 	}
 	
 	// Update is called once per frame
@@ -37,6 +38,7 @@ public class VictoryScript : MonoBehaviour {
 	{
 		if (other.gameObject.tag == "Player")
 		{
+			//victoryText.enabled = true ;
 			victoryText.text = "Level Completed!";
 			Time.timeScale = 0.0001f;
 		}

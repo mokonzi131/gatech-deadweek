@@ -234,10 +234,14 @@ public class InventoryDisplay {
 	public void setBooksNumber(int number) {
 		if (number < 5)
 		{
+			nbBooks.guiText.fontSize = 30;
 			nbBooks.guiText.text = number.ToString();
 		}
 		else
+		{
+			nbBooks.guiText.fontSize = 15;
 			nbBooks.guiText.text = "MAX";
+		}
 		//nbBooks.guiText.text = "∞";
 	}
 	
