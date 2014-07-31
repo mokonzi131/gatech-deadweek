@@ -1,0 +1,17 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerTarget.cs">
+    <Files>
+      <File FileName="Assets/Scripts/MinimapArrowLookAt.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/RadarController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Timer.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PickUpActionNew.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/VictoryScript.cs" Line="75" Column="1" />
+      <File FileName="Assets/Scripts/PlayerTarget.cs" Line="26" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

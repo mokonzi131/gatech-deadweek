@@ -1,4 +1,5 @@
 ﻿<Properties>
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/AutoDestruction.cs">
     <Files>
@@ -12,6 +13,14 @@
       <File FileName="Assets/Scripts/ZombieScript1.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/ZombiePopUp.cs" Line="11" Column="22" />
       <File FileName="Assets/AutoDestruction.cs" Line="19" Column="29" />
+=======
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\GT_DeadWeek_Alpha4\Assets\Scripts\Timer.cs">
+    <Files>
+      <File FileName="..\GT_DeadWeek_Alpha4\Assets\Scripts\Timer.cs" Line="77" Column="24" />
+      <File FileName="..\GT_DeadWeek_Alpha4\Assets\Scripts\MainMenuScreen.cs" Line="462" Column="6" />
+      <File FileName="..\GT_DeadWeek_Alpha4\Assets\Scripts\CheckpointManagerScript.cs" Line="68" Column="2" />
+>>>>>>> FETCH_HEAD
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

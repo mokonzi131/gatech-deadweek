@@ -262,7 +262,7 @@ public class ZombieScript1 : MonoBehaviour
 	
 	void CloseAttack()
 	{
-		Debug.Log ("close attack");
+		//Debug.Log ("close attack");
 		_animator.SetBool ("attack", true); 
 		stateText = "One on One attach";
 		
