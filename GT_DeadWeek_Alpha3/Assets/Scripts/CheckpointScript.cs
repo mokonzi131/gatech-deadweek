@@ -39,7 +39,7 @@ public class CheckpointScript : MonoBehaviour {
 	{
 		if (other.gameObject.tag == "Player")
 		{
-			if (index > checkpointManager.lastCheckpointIndex)
+			if (index == checkpointManager.lastCheckpointIndex + 1)
 			{
 				Debug.Log("Visit Checkpoint #" + index.ToString());
 				newCheckpointFlash = true;
@@ -47,6 +47,9 @@ public class CheckpointScript : MonoBehaviour {
 				fadingManager.FadeToWhite();
 
 				checkpointManager.UpdateCheckpoint(index);
+
+				GameObject.FindGameObjectWithTag("GameController").GetComponentInChildren<Timer>().setTime(900);
+				GameObject.FindGameObjectWithTag("GameController").GetComponent<Stamina>().setToFull();
 
 //				checkpointManager.lastCheckpointIndex = index;
 //				checkpointManager.lastCheckpointTime = GameObject.Find("Timer").GetComponent<Timer>().time;

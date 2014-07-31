@@ -10,7 +10,7 @@ Created by Team "GT Dead Week"
 using UnityEngine;
 using System.Collections;
 
-public class PickupActionNew : MonoBehaviour {
+public class PickUpActionNew : MonoBehaviour {
 	
 	
 	private GameObject target;
